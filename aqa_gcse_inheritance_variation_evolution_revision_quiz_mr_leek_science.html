@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQA GCSE Inheritance, Variation &amp; Evolution Revision Quiz — Mr Leek Science</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .option-card {
+      transition: all 0.16s ease;
+    }
+    .option-card:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+    .fade-in {
+      animation: fadeIn 0.22s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-100 text-slate-900">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <img
+          id="brandLogoImg"
+          src="mr leek science.jpg"
+          onerror="handleLogoFallback(this)"
+          alt="Mr Leek Science Logo"
+          class="h-12 sm:h-14 w-auto object-contain rounded-xl bg-white p-0.5 shadow-sm"
+        />
+        <div id="brandLogoFallback" class="hidden h-12 sm:h-14 w-12 sm:w-14 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white font-extrabold text-lg shadow-sm shrink-0">
+          MLS
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white leading-snug">
+            AQA GCSE Inheritance, Variation &amp; Evolution Revision Quiz
+          </h1>
+          <p class="text-xs sm:text-sm text-teal-300 font-medium">
+            Mr Leek Science &bull; Paper 2 Topic 6 (AQA 8461 / 8464)
+          </p>
+        </div>
+      </div>
+
+      <div id="headerControls" class="hidden flex items-center gap-2 sm:gap-3">
+        <span id="headerStudentBadge" class="hidden sm:inline-flex items-center gap-1.5 bg-slate-800 text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="headerStudentName">Student</span>
+        </span>
+        <button
+          type="button"
+          onclick="confirmReturnHome()"
+          class="text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl border border-slate-700 transition"
+        >
+          Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- ==================== VIEW 1: START SCREEN ==================== -->
+    <section id="startScreen" class="fade-in">
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <!-- Top Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 px-6 py-6 sm:px-8 text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-teal-200 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5">
+            Topic 6 &bull; Paper 2 Revision (8461 &amp; 8464)
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Configure Your Inheritance &amp; Evolution Quiz
+          </h2>
+          <p class="text-slate-200 text-sm sm:text-base mt-1.5 max-w-2xl">
+            Enter your name, choose your tier, select either all Topic 6 content or Genetics, Punnett Squares &amp; Inheritance only, and pick your question count.
+          </p>
+        </div>
+
+        <form id="quizSetupForm" onsubmit="handleStartQuiz(event)" novalidate class="p-6 sm:p-8 space-y-7">
+
+          <!-- 1. STUDENT DETAILS ROW -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div>
+              <label for="studentNameInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Student Name <span class="text-rose-600 font-extrabold">*</span>
+              </label>
+              <input
+                type="text"
+                id="studentNameInput"
+                placeholder="Enter your full name"
+                maxlength="50"
+                autocomplete="name"
+                oninput="clearValidationError()"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label for="studentEmailInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Email Address <span class="text-slate-400 font-medium">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                id="studentEmailInput"
+                placeholder="e.g. student@school.co.uk"
+                maxlength="80"
+                autocomplete="email"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+          </div>
+
+          <!-- 2. SELECT TIER / PATHWAY -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Select Tier / Pathway</span>
+              <span id="tierCountHint" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
+                Higher Tier Selected
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5" id="tierSelectorGroup">
+              <!-- Foundation -->
+              <button
+                type="button"
+                data-tier="foundation"
+                onclick="selectTier('foundation')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sky-100 text-sky-800 mb-1.5">
+                      Combined 8464
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Foundation Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Core sexual &amp; asexual reproduction, meiosis, DNA, Punnett squares, polydactyly/cystic fibrosis, natural selection, selective breeding &amp; fossils (Grades 1–5).
+                </p>
+              </button>
+
+              <!-- Higher (Default Active) -->
+              <button
+                type="button"
+                data-tier="higher"
+                onclick="selectTier('higher')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-teal-100 text-teal-800 mb-1.5">
+                      Combined 8464
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Higher Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-teal-600 bg-teal-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Includes genetic engineering steps (enzymes, vectors, early embryonic transfer), embryo screening evaluation, MRSA evolution &amp; three-domain classification (Grades 4–9).
+                </p>
+              </button>
+
+              <!-- Separate Biology -->
+              <button
+                type="button"
+                data-tier="separate"
+                onclick="selectTier('separate')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 mb-1.5">
+                      Triple 8461
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Separate Biology</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Full 8461 content: DNA nucleotide structure &amp; protein synthesis, adult cell cloning, speciation, Darwin/Wallace/Lamarck &amp; Gregor Mendel (Grades 4–9).
+                </p>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. TOPIC FOCUS SELECTOR -->
+          <div>
+            <span class="block text-sm font-bold text-slate-800 mb-2.5">Topic Focus</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- All Inheritance & Evolution Topics -->
+              <button
+                type="button"
+                id="modeAllBtn"
+                onclick="selectMode('all')"
+                class="text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition flex items-start gap-3.5"
+              >
+                <div id="modeAllIcon" class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">All Inheritance &amp; Evolution Topics</h4>
+                    <span id="modeAllCheck" class="text-teal-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p class="text-xs text-slate-600 mt-1">
+                    Covers meiosis, DNA &amp; genome, inheritance, variation, natural selection, selective breeding, genetic engineering, fossils, classification &amp; Separate exclusives.
+                  </p>
+                </div>
+              </button>
+
+              <!-- Dedicated Focus Box: Genetics, Punnett Squares & Inheritance Only -->
+              <button
+                type="button"
+                id="modeGeneticsBtn"
+                onclick="selectMode('genetics')"
+                class="text-left p-4 rounded-2xl border-2 border-slate-200 bg-amber-50/40 hover:border-amber-400 transition flex items-start gap-3.5"
+              >
+                <div id="modeGeneticsIcon" class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">Genetics, Punnett Squares &amp; Inheritance Only</h4>
+                    <span id="modeGeneticsCheck" class="hidden text-amber-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p id="modeGeneticsDesc" class="text-xs text-slate-600 mt-1">
+                    Dedicated focus mode: alleles, homozygous/heterozygous crosses, Punnett square probabilities, sex determination, polydactyly, cystic fibrosis &amp; embryo screening.
+                  </p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. NUMBER OF QUESTIONS -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Number of Questions</span>
+              <div class="flex items-center gap-2">
+                <span id="poolAvailabilityText" class="text-xs font-medium text-slate-500">
+                  84 unique questions available
+                </span>
+                <span id="cappedPoolBadge" class="hidden text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full border border-amber-300">
+                  Running max available
+                </span>
+              </div>
+            </div>
+            <div class="grid grid-cols-5 gap-2 sm:gap-3" id="countSelectorGroup">
+              <button type="button" data-count="10" onclick="selectCount(10)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                10
+              </button>
+              <button type="button" data-count="20" onclick="selectCount(20)" class="count-btn py-3 px-2 rounded-xl border-2 border-teal-600 bg-teal-600 text-white font-extrabold text-sm sm:text-base shadow-sm transition">
+                20
+              </button>
+              <button type="button" data-count="30" onclick="selectCount(30)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                30
+              </button>
+              <button type="button" data-count="50" onclick="selectCount(50)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                50
+              </button>
+              <button type="button" data-count="80" onclick="selectCount(80)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                80
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. BOTTOM ACTION FOOTER -->
+          <div class="pt-4 border-t border-slate-200 space-y-3">
+            <div id="validationAlert" class="hidden rounded-xl bg-rose-50 border border-rose-300 text-rose-800 px-4 py-3 text-sm font-semibold flex items-center gap-2">
+              <svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+              <span>Please enter your Student Name before starting the quiz.</span>
+            </div>
+
+            <button
+              type="submit"
+              id="startQuizBtn"
+              class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-extrabold text-base sm:text-lg shadow-lg shadow-teal-600/20 transition transform active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <span id="startBtnLabel">Start Higher Tier Quiz (20 Questions)</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: ACTIVE QUIZ ==================== -->
+    <section id="quizScreen" class="hidden fade-in space-y-5">
+      <!-- Progress & Metadata Header -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="quizTierBadge" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800">
+              Higher Tier
+            </span>
+            <span id="quizTopicBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
+              Reproduction &amp; Meiosis
+            </span>
+            <span id="quizFocusBadge" class="hidden text-xs font-extrabold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300">
+              Genetics &amp; Punnett Squares
+            </span>
+          </div>
+
+          <div class="flex items-center gap-4 text-sm font-bold text-slate-700">
+            <span id="questionCounterText">Question 1 of 20</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">
+              Score: <span id="liveScoreText">0</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-300" style="width: 5%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200">
+        <h3 id="questionPrompt" class="text-lg sm:text-xl font-bold text-slate-900 leading-relaxed mb-6">
+          Loading question...
+        </h3>
+
+        <!-- Options List -->
+        <div id="optionsContainer" class="space-y-3"></div>
+
+        <!-- Instant AQA Mark-Scheme Feedback Box -->
+        <div id="feedbackBox" class="hidden mt-6 rounded-2xl p-5 border-2 fade-in">
+          <div class="flex items-start gap-3">
+            <div id="feedbackIcon" class="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0 mt-0.5"></div>
+            <div class="flex-1">
+              <h4 id="feedbackHeading" class="font-extrabold text-base"></h4>
+              <p id="feedbackExplanation" class="text-sm mt-1.5 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div class="mt-5 flex justify-end">
+            <button
+              type="button"
+              id="nextQuestionBtn"
+              onclick="handleNextQuestion()"
+              class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base transition flex items-center gap-2 shadow"
+            >
+              <span id="nextBtnText">Next Question</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: DIAGNOSTIC REPORT ==================== -->
+    <section id="resultsScreen" class="hidden fade-in space-y-6">
+      <!-- Summary Hero Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 p-6 sm:p-8 text-white">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/15 text-teal-200 px-3 py-1 rounded-full mb-2">
+                AQA GCSE Inheritance, Variation &amp; Evolution Diagnostic Report
+              </span>
+              <h2 id="reportStudentTitle" class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Diagnostic Report: Student
+              </h2>
+              <p id="reportMetaSubtitle" class="text-sm text-slate-200 mt-1">
+                Higher Tier &bull; All Inheritance &amp; Evolution Topics
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-center">
+                <div id="reportPercentage" class="text-3xl sm:text-4xl font-extrabold text-emerald-300">
+                  0%
+                </div>
+                <div id="reportFraction" class="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                  0 / 20 Correct
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3.5 text-center">
+                <div id="reportGradeBadge" class="text-2xl sm:text-3xl font-extrabold text-amber-300">
+                  Grade 5
+                </div>
+                <div class="text-[11px] font-semibold text-slate-200 mt-0.5 uppercase tracking-wide">
+                  Est. Grade
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons Row -->
+        <div class="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            id="retryMissedBtn"
+            onclick="startMissedQuestionsQuiz()"
+            class="hidden px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span>Retry Missed Questions (<span id="missedCountLabel">0</span>)</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="copyResultsSummary()"
+            class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span id="copyBtnLabel">Copy Results Summary</span>
+          </button>
+
+          <a
+            id="emailResultsLink"
+            href="#"
+            class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-sm transition flex items-center gap-2"
+          >
+            <span>Email Results</span>
+          </a>
+
+          <button
+            type="button"
+            onclick="returnToMenu()"
+            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm transition ml-auto"
+          >
+            Start New Quiz
+          </button>
+        </div>
+
+        <!-- Topic-by-Topic Breakdown -->
+        <div class="p-6 sm:p-8">
+          <h3 class="text-lg font-extrabold text-slate-900 mb-1">Topic-by-Topic Performance Breakdown</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-5">
+            Identify your strongest areas in Inheritance, Variation &amp; Evolution (&ge;70%) and prioritise topics needing further revision (&lt;70%).
+          </p>
+          <div id="topicBreakdownContainer" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <!-- Question Review List -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 sm:p-8">
+        <h3 class="text-lg font-extrabold text-slate-900 mb-4">Question-by-Question Review</h3>
+        <div id="questionReviewList" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- Custom In-App Confirmation Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+        <h3 class="text-lg font-extrabold text-slate-900">Return to Quiz Menu?</h3>
+        <p class="text-sm text-slate-600 mt-2">
+          Your current quiz progress will be lost if you return to the start screen.
+        </p>
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="closeConfirmModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm">
+            Continue Quiz
+          </button>
+          <button type="button" onclick="returnToMenu()" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm">
+            Yes, Exit Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-5 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span class="font-semibold text-slate-700">Mr Leek Science &bull; AQA GCSE Biology (8461 &amp; 8464)</span>
+      <span>Paper 2 &bull; Topic 6: Inheritance, Variation &amp; Evolution Revision Platform</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 0. LOGO FALLBACK HANDLER
+    // =========================================================================
+    function handleLogoFallback(img) {
+      if (!img.dataset.triedFallback) {
+        img.dataset.triedFallback = 'true';
+        img.src = 'mrleeksciencelogo.png';
+      } else {
+        img.classList.add('hidden');
+        const fallbackBadge = document.getElementById('brandLogoFallback');
+        if (fallbackBadge) fallbackBadge.classList.remove('hidden');
+      }
+    }
+
+    // =========================================================================
+    // 1. COMPREHENSIVE 108-QUESTION AQA TOPIC 6 QUESTION BANK
+    //    Schema: { id, topic, tier: 'foundation'|'higher'|'separate', isGenetics, question, options, correct, explanation }
+    //    Filtering rules:
+    //      - 'foundation': tier === 'foundation'
+    //      - 'higher': tier === 'foundation' || tier === 'higher'
+    //      - 'separate': tier === 'foundation' || tier === 'higher' || tier === 'separate'
+    // =========================================================================
+    const QUESTION_BANK = [
+      // -------------------- SUBTOPIC 1: REPRODUCTION & MEIOSIS (16) --------------------
+      {
+        id: 1,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How does SEXUAL reproduction lead to genetic variation in the offspring?',
+        options: [
+          'It involves the fusion (joining) of male and female gametes, mixing genetic information from two parents',
+          'It involves only one parent dividing by mitosis so offspring are genetically identical clones',
+          'It occurs without any DNA replication or gamete formation',
+          'It deletes half of the parent’s genes permanently'
+        ],
+        options_note: '',
+        correct: 0,
+        explanation: 'Sexual reproduction fuses two gametes (e.g. sperm and egg, or pollen and egg cell), combining genetic material from both parents to produce genetically varied offspring.'
+      },
+      {
+        id: 2,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is true of the offspring produced by ASEXUAL reproduction (such as runners in strawberry plants or binary fission in bacteria)?',
+        options: [
+          'There is only one parent and no fusion of gametes; there is no mixing of genetic information, so offspring are genetically identical clones',
+          'Offspring have double the number of chromosomes of the parent',
+          'Offspring show huge genetic variation because two gametes fuse',
+          'Offspring are formed by meiosis in the ovaries'
+        ],
+        correct: 0,
+        explanation: 'Asexual reproduction relies on mitosis (or binary fission) from a single parent without gamete fusion, producing genetically identical clones.'
+      },
+      {
+        id: 3,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What happens to the chromosome number of a cell when it divides by MEIOSIS to produce gametes (sex cells)?',
+        options: [
+          'The chromosome number is halved (from diploid to haploid—e.g. from 46 to 23 in humans)',
+          'The chromosome number stays identical (46 to 46)',
+          'The chromosome number is doubled (46 to 92)',
+          'All chromosomes are destroyed except the X chromosome'
+        ],
+        correct: 0,
+        explanation: 'Meiosis halves the chromosome number so that gametes carry a single set of chromosomes (haploid).'
+      },
+      {
+        id: 4,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How many daughter cells are produced from one parent cell undergoing MEIOSIS, and are they genetically identical or genetically different?',
+        options: [
+          'Four genetically different haploid daughter cells (gametes)',
+          'Two genetically identical diploid daughter cells',
+          'Four genetically identical diploid daughter cells',
+          'Two genetically different haploid daughter cells'
+        ],
+        correct: 0,
+        explanation: 'Meiosis involves two divisions following one DNA replication, yielding four genetically non-identical gametes.'
+      },
+      {
+        id: 5,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How is the full diploid number of chromosomes restored after gametes are formed by meiosis?',
+        options: [
+          'During fertilisation, the nuclei of the male and female gametes fuse together, restoring the full diploid chromosome number (e.g. 23 + 23 = 46)',
+          'By the gamete dividing again by binary fission',
+          'By absorbing extra chromosomes from food in the stomach',
+          'By exposure to ultraviolet light'
+        ],
+        correct: 0,
+        explanation: 'Fertilisation combines two haploid gametes (n + n) to form a diploid zygote (2n) with the full chromosome complement.'
+      },
+      {
+        id: 6,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Once a zygote (fertilised egg cell) is formed, how does the new embryo grow and develop?',
+        options: [
+          'The zygote divides repeatedly by MITOSIS to produce genetically identical cells that later differentiate into specialised cells',
+          'The zygote divides repeatedly by meiosis, halving its chromosomes each time',
+          'The zygote splits by binary fission without forming tissues',
+          'The zygote stops dividing until adulthood'
+        ],
+        correct: 0,
+        explanation: 'After fertilisation, embryonic growth occurs via mitosis, maintaining the diploid chromosome number in every body cell.'
+      },
+      {
+        id: 7,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Which statement accurately describes the sequence of events inside a reproductive organ (such as a testis or ovary) during MEIOSIS?',
+        options: [
+          'Copies of the genetic information are made (chromosomes duplicate), and then the cell divides twice to form four gametes, each with a single set of chromosomes',
+          'The cell divides once without copying its DNA to form two diploid cells',
+          'The cell copies its DNA twice and divides once to form two tetraploid cells',
+          'Two cells fuse together to form one giant cell'
+        ],
+        correct: 0,
+        explanation: 'AQA specifies: DNA replicates once, followed by two consecutive cell divisions to produce four haploid gametes.'
+      },
+      {
+        id: 8,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'A horse body cell has 64 chromosomes. How many chromosomes will be found in a horse sperm cell, and how many in a fertilised horse zygote?',
+        options: [
+          '32 chromosomes in a sperm cell; 64 chromosomes in a fertilised zygote',
+          '64 chromosomes in a sperm cell; 128 chromosomes in a fertilised zygote',
+          '16 chromosomes in a sperm cell; 32 chromosomes in a fertilised zygote',
+          '32 chromosomes in a sperm cell; 32 chromosomes in a fertilised zygote'
+        ],
+        correct: 0,
+        explanation: 'Meiosis halves 64 to 32 in gametes; fertilisation fuses two gametes (32 + 32) to restore 64 in the zygote.'
+      },
+      {
+        id: 9,
+        topic: 'Reproduction & Meiosis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Separate Biology (8461), what are two key ADVANTAGES of SEXUAL reproduction compared to asexual reproduction?',
+        options: [
+          'Produces genetic variation in offspring, so if the environment changes (e.g. a new disease), some individuals are likely to have advantageous characteristics to survive by natural selection (allowing selective breeding in agriculture)',
+          'Requires only one parent and is much faster with lower energy expenditure',
+          'Guarantees that every single offspring is an exact copy of a high-yielding parent',
+          'Eliminates all mutations from a species'
+        ],
+        correct: 0,
+        explanation: 'Genetic variation provides raw material for natural selection when selection pressures change, and underpins selective breeding.'
+      },
+      {
+        id: 10,
+        topic: 'Reproduction & Meiosis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Separate Biology (8461), what are the main ADVANTAGES of ASEXUAL reproduction?',
+        options: [
+          'Only one parent is needed, it is more time and energy efficient (no need to find a mate), it is faster than sexual reproduction, and many identical offspring can be produced rapidly when conditions are favourable',
+          'It creates maximum genetic diversity to survive sudden climate change',
+          'It requires complex courtship rituals and pollination by insects',
+          'It halves the chromosome number every generation'
+        ],
+        correct: 0,
+        explanation: 'Asexual reproduction avoids the energy/time cost of finding a mate and rapidly colonises stable, favourable habitats.'
+      },
+      {
+        id: 11,
+        topic: 'Reproduction & Meiosis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Which three groups of organisms named in AQA Separate Biology (8461) reproduce BOTH sexually and asexually depending on the stage of their life cycle or environmental conditions?',
+        options: [
+          'Malarial parasites, fungi, and many plants (such as strawberries producing runners asexually and flowers/seeds sexually, or daffodils reproducing by bulbs and seeds)',
+          'Humans, dogs, and whales',
+          'Viruses, red blood cells, and human neurones',
+          'Horses, sheep, and lions'
+        ],
+        correct: 0,
+        explanation: 'AQA 8461 specifies malarial parasites (asexually in human host, sexually in mosquito), fungi (asexual spores vs sexual reproduction), and plants (bulbs/runners vs seeds).'
+      },
+      {
+        id: 12,
+        topic: 'Reproduction & Meiosis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How does the MALARIAL PARASITE (Plasmodium) use both sexual and asexual reproduction in its life cycle?',
+        options: [
+          'It reproduces asexually inside the human host (liver and red blood cells) to multiply rapidly, and reproduces sexually inside the mosquito vector',
+          'It reproduces sexually inside human red blood cells and asexually inside flower petals',
+          'It reproduces only by binary fission inside stagnant pond water',
+          'It reproduces sexually in human lungs and asexually in human skin'
+        ],
+        correct: 0,
+        explanation: 'Malarial protists undergo sexual reproduction in the female Anopheles mosquito and rapid asexual multiplication in the human host.'
+      },
+      {
+        id: 13,
+        topic: 'Reproduction & Meiosis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Why do many FUNGI reproduce asexually by releasing spores most of the time, but switch to sexual reproduction when environmental conditions become unfavourable?',
+        options: [
+          'Asexual spores rapidly produce millions of identical offspring when conditions are good, whereas sexual reproduction generates genetic variation that may allow some offspring to survive harsh or changing conditions',
+          'Sexual reproduction produces spores faster without needing another fungus',
+          'Asexual spores cannot be carried by the wind',
+          'Fungi switch to sexual reproduction to produce chlorophyll'
+        ],
+        correct: 0,
+        explanation: 'Combining both modes gives rapid population expansion in stable conditions plus adaptive variation during environmental stress.'
+      },
+      {
+        id: 14,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Which gametes are produced by flowering plants during sexual reproduction?',
+        options: [
+          'Pollen grains (containing male gametes) and egg cells (female gametes inside ovules)',
+          'Sperm cells and fungal spores',
+          'Runners and tubers',
+          'Xylem vessels and guard cells'
+        ],
+        correct: 0,
+        explanation: 'In flowering plants, male gametes are carried inside pollen and female gametes are egg cells within the ovary/ovules.'
+      },
+      {
+        id: 15,
+        topic: 'Reproduction & Meiosis',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Compare MITOSIS and MEIOSIS accurately in terms of daughter cells and chromosome number.',
+        options: [
+          'Mitosis produces 2 genetically identical diploid cells for growth/repair; Meiosis produces 4 genetically different haploid gametes for sexual reproduction',
+          'Mitosis produces 4 haploid cells; Meiosis produces 2 diploid cells',
+          'Both mitosis and meiosis produce genetically identical clones',
+          'Mitosis halves chromosome number; Meiosis doubles chromosome number'
+        ],
+        correct: 0,
+        explanation: 'Mitosis maintains chromosome number (2 identical diploid cells); meiosis halves chromosome number and introduces genetic variation (4 unique haploid gametes).'
+      },
+      {
+        id: 16,
+        topic: 'Reproduction & Meiosis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Why is it essential that gametes are HAPLOID (containing half the normal chromosome number) rather than diploid?',
+        options: [
+          'So that when two gametes fuse at fertilisation, the chromosome number does not double in every generation, keeping the species chromosome number constant',
+          'So that sperm cells are light enough to swim upwards',
+          'So that body cells can carry out photosynthesis',
+          'So that offspring inherit genes from only one parent'
+        ],
+        correct: 0,
+        explanation: 'Without reduction division by meiosis, each generation of sexual reproduction would double the chromosome count (46 → 92 → 184).'
+      },
+
+      // -------------------- SUBTOPIC 2: DNA, GENOME & PROTEIN SYNTHESIS (18) --------------------
+      {
+        id: 17,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How is the chemical structure of DNA described in GCSE Biology?',
+        options: [
+          'A polymer made up of two strands forming a double helix',
+          'A single straight chain of glucose molecules',
+          'A triple-stranded ring of fatty acids and glycerol',
+          'A polymer of amino acids folded into a hollow sphere'
+        ],
+        correct: 0,
+        explanation: 'DNA (deoxyribonucleic acid) is a biological polymer composed of two complementary strands coiled into a double helix.'
+      },
+      {
+        id: 18,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is a GENE?',
+        options: [
+          'A small section of DNA on a chromosome that codes for a particular sequence of amino acids, to make a specific protein',
+          'An entire chromosome containing thousands of proteins',
+          'A type of white blood cell that destroys bacteria',
+          'A sugar molecule stored in plant roots'
+        ],
+        correct: 0,
+        explanation: 'A gene is a specific length of DNA coding for a sequence of amino acids that folds into a functional protein.'
+      },
+      {
+        id: 19,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is meant by the "GENOME" of an organism?',
+        options: [
+          'The entire genetic material of that organism',
+          'Only the genes located on the X and Y sex chromosomes',
+          'The total number of red blood cells in the body',
+          'The physical appearance of an organism'
+        ],
+        correct: 0,
+        explanation: 'An organism’s genome comprises the entirety of its DNA (including all genes and non-coding DNA sequences).'
+      },
+      {
+        id: 20,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'State THREE reasons why understanding the HUMAN GENOME is of great importance to medicine and science.',
+        options: [
+          'Searching for genes linked to different types of disease, understanding and treating inherited disorders, and tracing human migration patterns from the past',
+          'Turning humans into plants, stopping all ageing immediately, and eliminating the need for oxygen',
+          'Replacing antibiotics with vitamins, curing viral colds in 5 minutes, and growing extra limbs',
+          'Predicting exact exam grades, changing eye colour with food, and stopping gravity'
+        ],
+        correct: 0,
+        explanation: 'AQA highlights three uses of the Human Genome Project: identifying disease-associated genes, understanding/treating inherited disorders, and tracing historical human migration.'
+      },
+      {
+        id: 21,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Separate Biology (8461), what are the repeating monomer units that make up a DNA polymer, and what three components does each unit contain?',
+        options: [
+          'Nucleotides; each nucleotide consists of a common sugar (deoxyribose) and phosphate group (forming the backbone) attached to one of four different bases (A, T, C, or G)',
+          'Amino acids; each consists of a fatty acid, glycerol, and starch',
+          'Monosaccharides; each consists of glucose, fructose, and sucrose',
+          'Ribosomes; each consists of protein, lipid, and cellulose'
+        ],
+        correct: 0,
+        explanation: 'DNA is a polymer of nucleotides; each nucleotide comprises a phosphate group, deoxyribose sugar, and one nitrogenous base (A, C, G, or T).'
+      },
+      {
+        id: 22,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'What is the rule of COMPLEMENTARY BASE PAIRING between the two strands of a DNA double helix (Separate Biology 8461)?',
+        options: [
+          'A (adenine) always pairs with T (thymine), and C (cytosine) always pairs with G (guanine)',
+          'A always pairs with C, and T always pairs with G',
+          'A always pairs with G, and C always pairs with T',
+          'Any base can pair randomly with any other base'
+        ],
+        correct: 0,
+        explanation: 'Complementary base pairing links A–T and C–G across the two antiparallel DNA strands.'
+      },
+      {
+        id: 23,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How does the order of bases in a gene determine the protein made by a cell (Separate Biology 8461)?',
+        options: [
+          'A sequence of three bases (a triplet code) codes for one particular amino acid; the order of bases controls the order in which amino acids are assembled to produce a specific protein',
+          'Each single base codes for one whole protein molecule',
+          'Groups of ten bases code for one lipid molecule',
+          'The bases dissolve into amino acids inside the nucleus'
+        ],
+        correct: 0,
+        explanation: 'The genetic code is a triplet code: every three DNA bases specify one amino acid in the polypeptide chain.'
+      },
+      {
+        id: 24,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'A coding section of a gene contains 450 DNA bases. How many amino acids will be present in the polypeptide chain coded for by this section (excluding any stop codon)?',
+        options: ['150 amino acids', '450 amino acids', '1350 amino acids', '225 amino acids'],
+        correct: 0,
+        explanation: 'Since 3 bases code for 1 amino acid, 450 ÷ 3 = 150 amino acids.'
+      },
+      {
+        id: 25,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Describe how PROTEINS are synthesised on ribosomes using the genetic code stored in the nucleus (Separate Biology 8461).',
+        options: [
+          'A template (mRNA) copy of the gene is made in the nucleus and moves to a ribosome in the cytoplasm; carrier molecules (tRNA) bring specific amino acids to the ribosome in the exact order dictated by the template, joining them into a protein chain that folds into a unique 3D shape',
+          'DNA leaves the nucleus and turns directly into an enzyme inside the cell membrane',
+          'Ribosomes enter the nucleus and eat the chromosomes to release amino acids',
+          'Amino acids pair directly with thymine bases inside the mitochondria'
+        ],
+        correct: 0,
+        explanation: 'Because DNA cannot leave the nucleus, a complementary mRNA template transfers the code to cytoplasmic ribosomes, where carrier molecules deliver matching amino acids.'
+      },
+      {
+        id: 26,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Once a chain of amino acids has been assembled on a ribosome, what happens next so that the protein can perform its specific function (e.g. as an enzyme or hormone)?',
+        options: [
+          'The polypeptide chain folds up to form a unique 3D shape, allowing proteins to carry out specific functions such as enzymes (with a specific active site), hormones, or structural proteins like collagen',
+          'The chain breaks back down into individual DNA nucleotides',
+          'The chain dissolves into glucose and carbon dioxide',
+          'The chain turns into a cellulose cell wall'
+        ],
+        correct: 0,
+        explanation: 'Primary amino acid sequence determines how the polypeptide folds into its functional tertiary 3D conformation.'
+      },
+      {
+        id: 27,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How can a MUTATION in a coding region of DNA stop an enzyme from working (Separate Biology 8461)?',
+        options: [
+          'A change in DNA bases may alter the sequence of amino acids coded for, changing how the protein folds and altering the shape of the enzyme’s active site so the substrate can no longer bind',
+          'A mutation turns the enzyme into a red blood cell',
+          'A mutation lowers the temperature of the cytoplasm to 0 °C',
+          'A mutation destroys all ribosomes in the cell'
+        ],
+        correct: 0,
+        explanation: 'Altered amino acid order changes protein folding; if the active site’s complementary shape changes, enzyme-substrate complexes cannot form.'
+      },
+      {
+        id: 28,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Not all parts of DNA code for proteins. What is the function of NON-CODING parts of DNA, and what happens if a mutation occurs there (Separate Biology 8461)?',
+        options: [
+          'Non-coding DNA can switch genes on and off (regulating gene expression); a variation/mutation in non-coding DNA can affect how genes are expressed (whether a protein is made or how much is made)',
+          'Non-coding DNA has zero function and mutations there can never affect an organism',
+          'Non-coding DNA stores starch and glycogen for respiration',
+          'Non-coding DNA produces antibodies directly'
+        ],
+        correct: 0,
+        explanation: 'Non-coding regulatory regions control transcription/gene expression; mutations here can alter phenotype by switching genes on or off inappropriately.'
+      },
+      {
+        id: 29,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'A strand of DNA has the base sequence: A – T – G – C – C – A – T – G – A. What is the complementary base sequence on the opposite DNA strand?',
+        options: [
+          'T – A – C – G – G – T – A – C – T',
+          'A – T – G – C – C – A – T – G – A',
+          'G – C – A – T – T – G – C – A – C',
+          'U – A – C – G – G – U – A – C – U'
+        ],
+        correct: 0,
+        explanation: 'Applying A↔T and C↔G gives T – A – C – G – G – T – A – C – T.'
+      },
+      {
+        id: 30,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Put these four biological structures in order of size from LARGEST to SMALLEST:',
+        options: [
+          'Cell → Nucleus → Chromosome → Gene',
+          'Gene → Chromosome → Nucleus → Cell',
+          'Nucleus → Cell → Gene → Chromosome',
+          'Chromosome → Gene → Cell → Nucleus'
+        ],
+        correct: 0,
+        explanation: 'A cell contains a nucleus, which houses chromosomes made of coiled DNA, divided into shorter sections called genes.'
+      },
+      {
+        id: 31,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Why do most mutations in DNA have NO effect on the phenotype (characteristics) of an organism?',
+        options: [
+          'Many mutations occur in non-coding DNA without affecting gene expression, or a base change still codes for the same amino acid (or an amino acid that does not alter the protein’s 3D shape or active site)',
+          'Because cells delete every mutated chromosome within 1 second',
+          'Because mutations only occur in hair and fingernails',
+          'Because ribosomes ignore mutated genes completely'
+        ],
+        correct: 0,
+        explanation: 'Most mutations are neutral because they fall in non-coding DNA or do not significantly alter the tertiary structure/function of the encoded protein.'
+      },
+      {
+        id: 32,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'A double-stranded DNA sample is analysed and found to contain 28% Adenine (A) bases. What percentage of the bases in this DNA sample will be Cytosine (C)?',
+        options: ['22%', '28%', '44%', '56%'],
+        correct: 0,
+        explanation: 'If A = 28%, then T = 28% (A + T = 56%). The remaining 44% is split equally between C and G, so C = 44% ÷ 2 = 22%.'
+      },
+      {
+        id: 33,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How are long DNA molecules packaged inside the nucleus of a eukaryotic cell?',
+        options: [
+          'They are coiled up very tightly into structures called chromosomes (usually found in pairs in body cells)',
+          'They float freely in the cytoplasm attached to chloroplasts',
+          'They are dissolved inside the cell vacuole',
+          'They are wrapped around red blood cells'
+        ],
+        correct: 0,
+        explanation: 'Chromosomes consist of long DNA molecules tightly coiled around proteins inside the nucleus.'
+      },
+      {
+        id: 34,
+        topic: 'DNA, Genome & Protein Synthesis',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'How can studying the genomes of different populations help scientists trace human migration patterns from the past?',
+        options: [
+          'As populations migrated and separated, neutral mutations accumulated at a steady rate; comparing shared and unique DNA sequences reveals how closely related populations are and when they diverged',
+          'Human DNA changes colour depending on the continent a person visits',
+          'People lose half their chromosomes whenever they cross an ocean',
+          'Only people living in Europe have DNA inside their cells'
+        ],
+        correct: 0,
+        explanation: 'Comparative genomics uses accumulated neutral mutations (genetic markers) to reconstruct ancient ancestry and migration routes.'
+      },
+
+      // -------------------- SUBTOPIC 3: GENETIC INHERITANCE & PUNNETT SQUARES (22) --------------------
+      {
+        id: 35,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'What is an "ALLELE"?',
+        options: [
+          'A different form (version) of the same gene',
+          'A pair of sex chromosomes in a sperm cell',
+          'An organism’s physical appearance',
+          'A type of white blood cell'
+        ],
+        correct: 0,
+        explanation: 'Alleles are alternative versions of a specific gene occupying the same locus on homologous chromosomes (e.g. dominant B vs recessive b).'
+      },
+      {
+        id: 36,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'What is the difference between a DOMINANT allele and a RECESSIVE allele?',
+        options: [
+          'A dominant allele is always expressed in the phenotype even if only one copy is present; a recessive allele is only expressed if two copies are present (no dominant allele is present)',
+          'A dominant allele is only expressed when two copies are present; a recessive allele is always expressed',
+          'Dominant alleles come only from the mother; recessive alleles come only from the father',
+          'Dominant alleles cause diseases, while recessive alleles never cause diseases'
+        ],
+        correct: 0,
+        explanation: 'A single dominant allele masks a recessive allele in a heterozygote; recessive phenotypes require a homozygous recessive genotype.'
+      },
+      {
+        id: 37,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'Define the genetic terms HOMOZYGOUS and HETEROZYGOUS.',
+        options: [
+          'Homozygous: having two identical alleles for a particular gene (e.g. BB or bb); Heterozygous: having two different alleles for a particular gene (e.g. Bb)',
+          'Homozygous: having two different alleles (Bb); Heterozygous: having two identical alleles (BB)',
+          'Homozygous: having 46 chromosomes; Heterozygous: having 23 chromosomes',
+          'Homozygous: male sex chromosomes; Heterozygous: female sex chromosomes'
+        ],
+        correct: 0,
+        explanation: 'Homozygous individuals carry two copies of the same allele (BB or bb); heterozygous individuals carry two different alleles (Bb).'
+      },
+      {
+        id: 38,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'What is the difference between an organism’s GENOTYPE and its PHENOTYPE?',
+        options: [
+          'Genotype is the combination of alleles present in the organism (e.g. Bb); Phenotype is the physical/observable characteristics expressed by the organism (e.g. brown fur)',
+          'Genotype is the physical appearance; Phenotype is the DNA sequence',
+          'Genotype is inherited from the mother; Phenotype is inherited from the father',
+          'Genotype applies only to plants; Phenotype applies only to animals'
+        ],
+        correct: 0,
+        explanation: 'Genotype refers to the genetic makeup (alleles); phenotype is the observable trait resulting from genotype and environment.'
+      },
+      {
+        id: 39,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'In mice, black fur (B) is dominant over white fur (b). Two heterozygous black mice (Bb × Bb) are crossed. What is the probability that an offspring will have WHITE fur?',
+        options: ['25% (or 1 in 4 / 0.25)', '50% (or 1 in 2)', '75% (or 3 in 4)', '0%'],
+        correct: 0,
+        explanation: 'Punnett square of Bb × Bb gives genotypes: 1 BB (black), 2 Bb (black), 1 bb (white). Thus 1 out of 4 = 25% have white fur.'
+      },
+      {
+        id: 40,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'In pea plants, tall stem (T) is dominant over dwarf stem (t). A homozygous tall plant (TT) is crossed with a dwarf plant (tt). What percentage of the offspring will be TALL?',
+        options: ['100% (all offspring have genotype Tt)', '75%', '50%', '25%'],
+        correct: 0,
+        explanation: 'TT × tt produces 100% heterozygous (Tt) offspring; since T is dominant, 100% express the tall phenotype.'
+      },
+      {
+        id: 41,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'A heterozygous brown-eyed parent (Bb) and a homozygous blue-eyed parent (bb) have a child. What is the probability that the child will have BLUE eyes?',
+        options: ['50% (or 1 in 2 / 0.5)', '25%', '75%', '100%'],
+        correct: 0,
+        explanation: 'Crossing Bb × bb yields 50% Bb (brown eyes) and 50% bb (blue eyes).'
+      },
+      {
+        id: 42,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'What are the sex chromosomes in ordinary human female and male body cells?',
+        options: [
+          'Females have two X chromosomes (XX); males have one X and one Y chromosome (XY)',
+          'Females have XY; males have XX',
+          'Females have YY; males have XX',
+          'Both males and females have XX'
+        ],
+        correct: 0,
+        explanation: 'Human females carry XX sex chromosomes and males carry XY.'
+      },
+      {
+        id: 43,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'Using a Punnett square for sex determination (XX × XY), why is the probability of having a baby boy or a baby girl 50% in every pregnancy?',
+        options: [
+          'All egg cells carry an X chromosome, while 50% of sperm cells carry an X chromosome and 50% carry a Y chromosome, giving 50% XX (female) and 50% XY (male) zygotes',
+          'Half of all egg cells carry a Y chromosome',
+          'The mother’s diet determines whether X or Y chromosomes survive',
+          'If a couple already has three boys, the fourth child is guaranteed to be a girl'
+        ],
+        correct: 0,
+        explanation: 'Male gametes segregate 50% X and 50% Y; each fertilisation is an independent event with a 0.5 probability of XX or XY.'
+      },
+      {
+        id: 44,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'POLYDACTYLY is an inherited disorder where a person is born with extra fingers or toes. It is caused by a DOMINANT allele (D). If a heterozygous person with polydactyly (Dd) has children with an unaffected person (dd), what is the chance of each child inheriting polydactyly?',
+        options: ['50% (1 in 2)', '25% (1 in 4)', '75% (3 in 4)', '0%'],
+        correct: 0,
+        explanation: 'Dd × dd gives 50% Dd (polydactyly) and 50% dd (unaffected). Because D is dominant, there are no unaffected "carriers".'
+      },
+      {
+        id: 45,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'CYSTIC FIBROSIS is an inherited disorder of cell membranes (causing thick sticky mucus in the lungs and digestive system). It is caused by a RECESSIVE allele (f). How can two healthy, unaffected parents have a child with cystic fibrosis?',
+        options: [
+          'Both parents must be heterozygous carriers (Ff); there is a 25% (1 in 4) chance that both pass on the recessive allele (f) to produce a child with genotype ff',
+          'One parent must be homozygous dominant (FF) and the other homozygous recessive (ff)',
+          'Cystic fibrosis is caught from bacteria in the air',
+          'Both parents must have cystic fibrosis (ff) themselves'
+        ],
+        correct: 0,
+        explanation: 'Two heterozygous carriers (Ff × Ff) produce 1 FF : 2 Ff : 1 ff, giving a 25% probability of an affected child (ff).'
+      },
+      {
+        id: 46,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'Why is it impossible to be an unaffected "carrier" of POLYDACTYLY, whereas a person CAN be an unaffected carrier of CYSTIC FIBROSIS?',
+        options: [
+          'Polydactyly is caused by a dominant allele (so anyone with even one copy has the condition), whereas cystic fibrosis is caused by a recessive allele (so a heterozygote Ff carries the allele without showing symptoms)',
+          'Polydactyly is caused by a virus, whereas cystic fibrosis is genetic',
+          'Cystic fibrosis is only found on the Y chromosome',
+          'Polydactyly only appears after age 50'
+        ],
+        correct: 0,
+        explanation: 'Only recessive conditions allow unaffected heterozygous carriers because a single dominant allele masks the recessive allele.'
+      },
+      {
+        id: 47,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'higher',
+        isGenetics: true,
+        question: 'In a family pedigree tree for a genetic condition, two unaffected parents have an affected daughter. What does this prove with certainty about the inheritance of the condition?',
+        options: [
+          'The condition must be caused by a RECESSIVE allele, and both parents must be heterozygous carriers',
+          'The condition must be caused by a DOMINANT allele',
+          'The condition is carried only on the Y chromosome',
+          'The daughter must be homozygous dominant'
+        ],
+        correct: 0,
+        explanation: 'If two unaffected parents produce an affected child, neither parent expresses the trait, proving the allele is recessive and both parents are heterozygotes.'
+      },
+      {
+        id: 48,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'higher',
+        isGenetics: true,
+        question: 'In a family pedigree tree, an affected father and an affected mother have an unaffected son. What does this prove about the allele causing the condition?',
+        options: [
+          'The condition must be caused by a DOMINANT allele, and both parents must be heterozygous (each passing on a recessive normal allele to the unaffected son)',
+          'The condition must be caused by a RECESSIVE allele',
+          'Both parents must be homozygous dominant',
+          'The unaffected son must have inherited two dominant alleles'
+        ],
+        correct: 0,
+        explanation: 'Two affected parents can only produce an unaffected child if the disorder is dominant and both parents are heterozygous (e.g. Dd × Dd → dd).'
+      },
+      {
+        id: 49,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'What is EMBRYO SCREENING (pre-implantation genetic diagnosis) during IVF?',
+        options: [
+          'Removing a cell from an embryo created by IVF and testing its DNA for specific genetic disorders (such as cystic fibrosis) before deciding which healthy embryo to implant into the uterus',
+          'Injecting antibiotics into a newborn baby’s blood',
+          'Using an ultrasound scan to check if a baby is a boy or a girl',
+          'Vaccinating embryos against measles'
+        ],
+        correct: 0,
+        explanation: 'Embryo screening biopsies a single cell from an early IVF embryo to test for faulty alleles prior to implantation.'
+      },
+      {
+        id: 50,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'higher',
+        isGenetics: true,
+        question: 'Evaluate the ETHICAL, SOCIAL, and ECONOMIC arguments surrounding EMBRYO SCREENING for inherited disorders.',
+        options: [
+          'For: prevents severe suffering for the child and saves healthcare/social care costs; Against: involves destroying unused embryos (which some believe have a right to life), carries a small risk of false results/miscarriage, and raises concerns about selecting "designer" traits',
+          'Embryo screening is completely free and has zero ethical objections anywhere in the world',
+          'Embryo screening cures cystic fibrosis in adults aged 40',
+          'Embryo screening always fails to detect recessive alleles'
+        ],
+        correct: 0,
+        explanation: 'AQA expects balanced evaluation weighing reduced suffering and healthcare costs against embryo destruction, procedural risk, and eugenics/designer-baby concerns.'
+      },
+      {
+        id: 51,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'separate',
+        isGenetics: true,
+        question: 'In the mid-19th century, Austrian monk GREGOR MENDEL carried out breeding experiments on pea plants. What key conclusion did Mendel reach about inheritance?',
+        options: [
+          'The inheritance of each characteristic is determined by "hereditary units" (now called genes/alleles) passed on to descendants unchanged, which can be dominant or recessive',
+          'Characteristics acquired during an organism’s lifetime are passed to offspring',
+          'All traits blend together like mixing black and white paint into grey',
+          'Pea plants reproduce only by binary fission'
+        ],
+        correct: 0,
+        explanation: 'Mendel demonstrated particulate inheritance via discrete dominant and recessive "units" (genes).'
+      },
+      {
+        id: 52,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'separate',
+        isGenetics: true,
+        question: 'Why was the importance of GREGOR MENDEL’s discovery NOT recognised by the scientific community until many years after his death (Separate Biology 8461)?',
+        options: [
+          'Scientists at the time had no knowledge of chromosomes, genes, or DNA, and Mendel published his work in an obscure local journal so few leading scientists read or understood the mathematical basis of his findings',
+          'Mendel refused to write down any numbers or results',
+          'Pea plants were banned from European laboratories',
+          'Charles Darwin proved Mendel’s pea experiments were fake'
+        ],
+        correct: 0,
+        explanation: 'In 1866, chromosomes and meiosis had not yet been observed under microscopes; once chromosomes were discovered in the late 19th/early 20th century, Mendel’s rules were rediscovered.'
+      },
+      {
+        id: 53,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'separate',
+        isGenetics: true,
+        question: 'Outline the timeline of gene discovery in the late 19th and 20th centuries (Separate Biology 8461): what happened after Mendel’s work was rediscovered?',
+        options: [
+          'In the late 19th century the behaviour of chromosomes during cell division was observed; in the early 20th century it was observed that chromosomes and Mendel’s "units" behaved in similar ways (leading to the idea that genes are located on chromosomes); in the mid-20th century the structure of DNA was determined and the mechanism of gene function worked out',
+          'The structure of DNA was discovered in 1650 before microscopes were invented',
+          'Chromosomes were discovered in 2015 after the Human Genome Project finished',
+          'Scientists proved that genes are made of starch, not DNA'
+        ],
+        correct: 0,
+        explanation: 'AQA 8461 tracks the progression: Mendel (1866) → chromosome behaviour observed (late 19th c.) → genes linked to chromosomes (early 20th c.) → DNA double helix & genetic code (mid-20th c.).'
+      },
+      {
+        id: 54,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'foundation',
+        isGenetics: true,
+        question: 'Why do most human characteristics (such as height, skin colour, or intelligence) NOT follow simple single-gene Punnett square ratios like 3:1?',
+        options: [
+          'Most characteristics are controlled by MANY genes interacting together (polygenic inheritance), often combined with environmental influences',
+          'Height is controlled by only one single recessive allele',
+          'Human body cells have only 2 chromosomes',
+          'Punnett squares only work for bacteria'
+        ],
+        correct: 0,
+        explanation: 'AQA highlights that while single-gene traits (e.g. cystic fibrosis, polydactyly, fur colour in mice) illustrate basic genetics, most phenotypes involve multiple interacting genes.'
+      },
+      {
+        id: 55,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'higher',
+        isGenetics: true,
+        question: 'A couple are both carriers for cystic fibrosis (Ff × Ff). Their first three children are all unaffected. What is the probability that their FOURTH child will have cystic fibrosis?',
+        options: ['25% (1 in 4)', '100% (since the first three were unaffected)', '0%', '75%'],
+        correct: 0,
+        explanation: 'Each fertilisation is an independent random event; previous outcomes do not change the 25% (1 in 4) probability for each subsequent pregnancy.'
+      },
+      {
+        id: 56,
+        topic: 'Genetic Inheritance & Punnett Squares',
+        tier: 'higher',
+        isGenetics: true,
+        question: 'In a genetic cross between two heterozygous parents (Aa × Aa), 400 offspring are produced. Approximately how many offspring would be expected to show the DOMINANT phenotype?',
+        options: ['300', '100', '200', '400'],
+        correct: 0,
+        explanation: 'Aa × Aa gives a 3:1 phenotypic ratio (75% dominant : 25% recessive). 75% of 400 = 300.'
+      },
+
+      // -------------------- SUBTOPIC 4: VARIATION, NATURAL SELECTION & SELECTIVE BREEDING (22) --------------------
+      {
+        id: 57,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What are the two main causes of VARIATION (differences in characteristics) between individuals of the same species?',
+        options: [
+          'The genes they have inherited (genetic causes) and the conditions in which they have developed (environmental causes) — or a combination of both',
+          'Only the type of food they eat as adults',
+          'Only the temperature of the room they are born in',
+          'Mitosis and binary fission'
+        ],
+        correct: 0,
+        explanation: 'Phenotypic variation arises from inherited genetic differences, environmental factors, or an interaction between both.'
+      },
+      {
+        id: 58,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Which human characteristic is determined SOLELY by inherited GENETIC factors, regardless of environment?',
+        options: ['ABO blood group', 'Scars on the skin', 'Language spoken', 'Body mass (weight)'],
+        correct: 0,
+        explanation: 'ABO blood group is purely genetic; scars and spoken language are environmental, while body mass is influenced by both genes and diet/exercise.'
+      },
+      {
+        id: 59,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Where does all NEW genetic variation in a population originally come from?',
+        options: [
+          'Mutations (random changes in DNA sequence occurring continuously)',
+          'Exercising muscles every day',
+          'Eating high-protein foods',
+          'Washing hands with soap'
+        ],
+        correct: 0,
+        explanation: 'Mutations create new alleles; sexual reproduction then shuffles existing alleles into new combinations.'
+      },
+      {
+        id: 60,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Summarise Charles Darwin’s theory of EVOLUTION BY NATURAL SELECTION.',
+        options: [
+          'Individual organisms within a species show wide variation caused by differences in their genes; individuals with characteristics most suited to the environment are more likely to survive and breed successfully, passing the alleles for those advantageous characteristics to their offspring',
+          'Organisms deliberately mutate their genes when they need to adapt to a new climate',
+          'The strongest animals eat all the plants so no other species can evolve',
+          'All species were created unchanged and never adapt over time'
+        ],
+        correct: 0,
+        explanation: 'Natural selection operates on heritable variation: differential survival and reproduction pass advantageous alleles to future generations.'
+      },
+      {
+        id: 61,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is "EVOLUTION" as defined in AQA GCSE Biology?',
+        options: [
+          'A change in the inherited characteristics of a population over time through a process of natural selection, which may result in the formation of a new species',
+          'An individual animal learning a new trick during its lifetime',
+          'A caterpillar turning into a butterfly',
+          'A plant growing taller when given extra water'
+        ],
+        correct: 0,
+        explanation: 'Evolution is the gradual change in heritable traits across generations of a population.'
+      },
+      {
+        id: 62,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'When have two diverging populations evolved into TWO SEPARATE SPECIES?',
+        options: [
+          'When two populations of one species become so different in phenotype that they can no longer interbreed to produce fertile offspring',
+          'When two populations live on opposite sides of a river',
+          'When two animals have slightly different fur colours',
+          'When two plants grow in different soil pH'
+        ],
+        correct: 0,
+        explanation: 'Biological species definition: two organisms belong to the same species only if they can interbreed to yield fertile offspring.'
+      },
+      {
+        id: 63,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Separate Biology (8461), outline the steps by which SPECIATION occurs when a population becomes geographically isolated (e.g. on separate islands).',
+        options: [
+          '1. Geographical isolation separates two populations; 2. Each population shows genetic variation and experiences different environmental conditions/selection pressures; 3. Natural selection favours different advantageous alleles in each population so they survive, breed, and pass them on; 4. Over many generations the populations diverge so much that they can no longer interbreed to produce fertile offspring',
+          '1. Animals swim to an island; 2. They choose to change their DNA; 3. Within 1 generation they become a new species',
+          '1. Selective breeding by humans separates the animals; 2. Both islands have identical climates; 3. No mutations ever occur',
+          '1. Two different species merge together into one species'
+        ],
+        correct: 0,
+        explanation: 'Allopatric speciation requires isolation, distinct selection pressures acting on genetic variation, allele frequency divergence, and eventual reproductive isolation.'
+      },
+      {
+        id: 64,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Why was Charles Darwin’s theory of evolution by natural selection only gradually accepted when he published "On the Origin of Species" in 1859 (Separate Biology 8461)?',
+        options: [
+          'The theory challenged the idea that God made all the animals and plants that live on Earth; there was insufficient evidence at the time to convince many scientists; and the mechanism of inheritance and variation was not known until 50 years later',
+          'Darwin never travelled outside England or collected any specimens',
+          'Fossils had not been discovered yet in 1859',
+          'Darwin claimed that humans evolved directly from oak trees'
+        ],
+        correct: 0,
+        explanation: 'AQA 8461 identifies three reasons for initial resistance: religious conflict with special creation, limited contemporary evidence, and lack of knowledge of genes/mutations.'
+      },
+      {
+        id: 65,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How did Jean-Baptiste LAMARCK’s theory of evolution differ from Charles Darwin’s theory (Separate Biology 8461)?',
+        options: [
+          'Lamarck proposed that changes occurring in an organism during its lifetime ("acquired characteristics", such as a giraffe stretching its neck) could be inherited by its offspring, whereas Darwin showed evolution happens via inherited genetic variation and natural selection',
+          'Lamarck discovered DNA double helices, whereas Darwin discovered penicillin',
+          'Lamarck believed species never changed, whereas Darwin believed all species were identical',
+          'Lamarck proposed selective breeding, whereas Darwin proposed cloning'
+        ],
+        correct: 0,
+        explanation: 'Lamarckism (inheritance of acquired characteristics) was disproved because somatic changes during an organism’s lifetime do not alter gamete DNA.'
+      },
+      {
+        id: 66,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'What major contributions did ALFRED RUSSEL WALLACE make to evolutionary biology (Separate Biology 8461)?',
+        options: [
+          'He independently proposed the theory of evolution by natural selection (prompting Darwin to publish jointly with him in 1858) and worked extensively on warning colouration in animals and the theory of speciation',
+          'He invented the electron microscope and discovered ribosomes',
+          'He disproved natural selection using pea plants',
+          'He discovered monoclonal antibodies in mice'
+        ],
+        correct: 0,
+        explanation: 'Wallace independently formulated natural selection from his work in the Malay Archipelago and pioneered research into warning colouration and speciation.'
+      },
+      {
+        id: 67,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is SELECTIVE BREEDING (artificial selection)?',
+        options: [
+          'The process by which humans breed plants and animals for particular genetic characteristics over many generations',
+          'The natural survival of wild animals without any human involvement',
+          'Inserting a human gene into a bacterial plasmid',
+          'Taking cuttings from a rose bush to make clones'
+        ],
+        correct: 0,
+        explanation: 'Selective breeding involves human selection of parents with desired phenotypes to breed over successive generations.'
+      },
+      {
+        id: 68,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Describe the 4 steps a farmer uses to selectively breed cows that produce a high yield of milk.',
+        options: [
+          '1. Choose parents (a cow and a bull) with the highest milk-yield traits from the existing stock; 2. Breed them together; 3. From the offspring, choose those with the highest milk yield and breed them together; 4. Continue over many generations until all offspring show high milk yield',
+          '1. Inject milk-producing genes from bacteria into cow eggs; 2. Clone the embryos; 3. Grow them in agar',
+          '1. Feed all cows extra grass; 2. Sell the offspring immediately; 3. Never breed related animals',
+          '1. Expose cows to X-rays to cause mutations; 2. Keep all offspring'
+        ],
+        correct: 0,
+        explanation: 'Selective breeding requires selecting top-performing parents, mating them, selecting the best progeny, and repeating across multiple generations.'
+      },
+      {
+        id: 69,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Give FOUR examples of desired characteristics selected by humans in crops and domesticated animals.',
+        options: [
+          'Disease resistance in food crops, animals which produce more meat or milk, domestic dogs with a gentle nature, and large or unusual flowers',
+          'Plants with no chlorophyll, cows that produce no milk, aggressive guard dogs, and tiny weeds',
+          'Bacteria resistant to penicillin, mosquitoes carrying malaria, and venomous snakes',
+          'Fish that cannot swim and birds with no feathers'
+        ],
+        correct: 0,
+        explanation: 'AQA lists these exact four examples: disease-resistant crops, high meat/milk livestock, gentle-natured domestic dogs, and large/unusual flowers.'
+      },
+      {
+        id: 70,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is the main genetic risk of SELECTIVE BREEDING over many generations?',
+        options: [
+          'It can lead to "inbreeding" (breeding closely related individuals), which reduces the gene pool and makes breeds particularly prone to inherited genetic defects or newly emerging diseases',
+          'It creates too much genetic variation so offspring look completely different from parents',
+          'It causes crops to turn into animals',
+          'It eliminates all recessive alleles from the species'
+        ],
+        correct: 0,
+        explanation: 'Inbreeding increases homozygosity for harmful recessive alleles and narrows genetic diversity, leaving populations vulnerable to new pathogens.'
+      },
+      {
+        id: 71,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'During the Industrial Revolution in Britain, soot blackened tree trunks and killed pale lichens. Dark-coloured peppered moths became much more common than pale peppered moths. Explain why using Darwin’s theory.',
+        options: [
+          'Dark moths had an inherited allele giving dark wing colouration; on soot-blackened bark they were better camouflaged from predatory birds, so they were more likely to survive, reproduce, and pass the dark-wing allele to their offspring',
+          'The soot dyed the wings of pale moths black, and they passed the soot onto their eggs',
+          'Dark moths chose to mutate so birds could not see them',
+          'Predatory birds became allergic to dark moths'
+        ],
+        correct: 0,
+        explanation: 'Industrial melanism in Biston betularia is a classic example of directional natural selection acting on pre-existing heritable variation.'
+      },
+      {
+        id: 72,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Why does a reduced GENE POOL (low genetic variation) put an inbred population of pedigree dogs or monoculture crop plants at serious risk?',
+        options: [
+          'If a new disease or environmental change occurs, there is less chance that any individuals possess alleles conferring resistance/survival, and closely related parents are more likely to both carry the same harmful recessive alleles',
+          'A smaller gene pool means organisms have fewer chromosomes in their cells',
+          'Inbreeding causes organisms to reproduce only by binary fission',
+          'Reduced gene pool increases the rate of photosynthesis too much'
+        ],
+        correct: 0,
+        explanation: 'Low allelic diversity reduces adaptive capacity against novel pathogens and raises the incidence of homozygous recessive disorders.'
+      },
+      {
+        id: 73,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Alfred Russel Wallace’s studies of warning colouration (aposematism) in brightly coloured poisonous frogs or wasps, how did warning colouration evolve by natural selection?',
+        options: [
+          'Individuals with a random mutation giving bright warning colours were easily remembered and avoided by predators after tasting unpleasant/toxic; they survived more often and passed the bright-colour alleles to offspring',
+          'Poisonous frogs painted themselves bright yellow to scare birds',
+          'Predators taught frogs how to make bright pigments',
+          'Bright colours helped the frogs photosynthesise in the rainforest'
+        ],
+        correct: 0,
+        explanation: 'Predator avoidance learning selects for conspicuous warning patterns paired with chemical defences.'
+      },
+      {
+        id: 74,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Why do identical twins (who share 100% of their genes) sometimes end up with slightly different heights, weights, or personalities as adults?',
+        options: [
+          'Because phenotype is influenced by ENVIRONMENTAL factors (such as nutrition, exercise, illnesses, and life experiences) as well as inherited genes',
+          'Because one twin undergoes meiosis while the other undergoes mitosis',
+          'Because identical twins have completely different DNA sequences',
+          'Because genes stop working after age 10'
+        ],
+        correct: 0,
+        explanation: 'Monozygotic twins share identical genotypes, so phenotypic differences demonstrate environmental modification of traits.'
+      },
+      {
+        id: 75,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'How does SELECTIVE BREEDING differ from NATURAL SELECTION in terms of the "selection pressure"?',
+        options: [
+          'In natural selection, environmental factors (predators, climate, disease, competition) determine which individuals survive and reproduce; in selective breeding, HUMANS choose which individuals breed based on traits useful to humans (which might even be disadvantageous in the wild)',
+          'Natural selection takes 1 generation, whereas selective breeding takes 10 million years',
+          'Selective breeding relies on random mutations only, whereas natural selection does not involve genes',
+          'There is no difference between natural selection and selective breeding'
+        ],
+        correct: 0,
+        explanation: 'Both alter allele frequencies across generations, but human utility replaces natural ecological fitness in selective breeding.'
+      },
+      {
+        id: 76,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Why are island archipelagos (such as the Galápagos Islands visited by Darwin, or the Malay Archipelago studied by Wallace) ideal locations for observing SPECIATION?',
+        options: [
+          'Oceans act as geographical barriers isolating populations on different islands with distinct food sources and climates, driving independent natural selection until populations become reproductively isolated new species',
+          'Islands have no predators or environmental selection pressures',
+          'Islands receive twice as much gravity as continents',
+          'Animals on islands reproduce only asexually'
+        ],
+        correct: 0,
+        explanation: 'Water barriers prevent gene flow between island populations while differing island habitats impose divergent selection pressures.'
+      },
+      {
+        id: 77,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'A gardener takes cuttings from a hydrangea plant and grows one in acidic soil (producing blue flowers) and another genetically identical cutting in alkaline soil (producing pink flowers). What type of variation is this flower colour difference?',
+        options: [
+          'Environmental variation (caused by soil pH conditions rather than a change in genes)',
+          'Purely genetic variation caused by sexual reproduction',
+          'Speciation into two separate species',
+          'Selective breeding over 50 generations'
+        ],
+        correct: 0,
+        explanation: 'Since both cuttings are genetically identical clones, the phenotypic difference is entirely environmental.'
+      },
+      {
+        id: 78,
+        topic: 'Variation, Natural Selection & Selective Breeding',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Why does evolution by natural selection usually take many generations (hundreds to millions of years) in large mammals like elephants, whereas it can happen within a few years in bacteria?',
+        options: [
+          'Bacteria have a much shorter generation time (reproducing every ~20 minutes) and huge population sizes, whereas elephants take ~15–20 years to reach reproductive maturity and have few offspring',
+          'Elephants do not have DNA in their cells',
+          'Bacteria do not undergo mutations',
+          'Natural selection only works on microorganisms'
+        ],
+        correct: 0,
+        explanation: 'Rate of evolutionary change depends strongly on generation time and reproductive rate.'
+      },
+
+      // -------------------- SUBTOPIC 5: GENETIC ENGINEERING & CLONING (16) --------------------
+      {
+        id: 79,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What is GENETIC ENGINEERING (genetic modification)?',
+        options: [
+          'A process which involves modifying the genome of an organism by introducing a gene from another organism to give a desired characteristic',
+          'Breeding two pedigree dogs together over 10 generations',
+          'Taking a stem cutting from a geranium plant',
+          'Fusing a sperm cell and an egg cell in IVF'
+        ],
+        correct: 0,
+        explanation: 'Genetic engineering transfers a specific gene from one organism (even a different species) into the genome of another organism.'
+      },
+      {
+        id: 80,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'How have bacterial cells been genetically engineered to help people with Type 1 diabetes?',
+        options: [
+          'The human gene for insulin has been inserted into bacterial cells so the bacteria produce large quantities of pure human insulin for medical use',
+          'Bacteria have been engineered to eat glucose inside human blood vessels',
+          'Bacteria have been injected into the human pancreas to replace islet cells',
+          'Bacteria have been modified to produce penicillin instead of insulin'
+        ],
+        correct: 0,
+        explanation: 'Recombinant bacteria carrying the human insulin gene synthesise human insulin rapidly and economically in fermenters.'
+      },
+      {
+        id: 81,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What are GENETICALLY MODIFIED (GM) CROPS, and what desired characteristics are commonly engineered into them?',
+        options: [
+          'Plant crops that have had genes from other organisms inserted into them, for example to become resistant to insect attack or resistant to herbicides, or to produce increased yields / extra vitamins (such as Golden Rice)',
+          'Crops watered with genetically modified rainwater',
+          'Crops grown in total darkness without soil',
+          'Crops cross-pollinated by bees'
+        ],
+        correct: 0,
+        explanation: 'GM crops are engineered for herbicide resistance, pest resistance, higher nutritional value, or improved yields.'
+      },
+      {
+        id: 82,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What are the main CONCERNS raised by critics about growing GM crops?',
+        options: [
+          'Concerns about potential effects on populations of wild flowers and insects (reducing biodiversity), and uncertainty about the long-term effects of eating GM crops on human health',
+          'GM crops use up all the oxygen in the atmosphere',
+          'GM crops turn into carnivorous plants',
+          'GM crops cannot carry out photosynthesis'
+        ],
+        correct: 0,
+        explanation: 'AQA notes concerns regarding ecological impacts on wild flora/insects (e.g. via herbicide overuse or gene flow) and perceived long-term human health effects.'
+      },
+      {
+        id: 83,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Outline the step-by-step process of GENETIC ENGINEERING required for Higher Tier (8461 / 8464).',
+        options: [
+          '1. Enzymes are used to isolate (cut out) the required gene; 2. This gene is inserted into a vector (usually a bacterial plasmid or a virus); 3. The vector is used to insert the gene into the required cells; 4. Genes are transferred to the cells of animals, plants, or microorganisms at an early stage in their development so they develop with desired characteristics',
+          '1. Heat the DNA to 100 °C; 2. Mix with starch; 3. Feed to adult animals so their offspring inherit the trait',
+          '1. Cut a whole chromosome in half with scissors; 2. Inject into adult muscle cells',
+          '1. Fuse two red blood cells together using an electric shock'
+        ],
+        correct: 0,
+        explanation: 'Higher Tier requires knowing: enzymes cut out the desired gene → insertion into a vector (plasmid/virus) → transfer into target organism cells at an early developmental stage.'
+      },
+      {
+        id: 84,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Why must a desired gene be transferred into the cells of an animal or plant at an EARLY STAGE IN ITS DEVELOPMENT (e.g. embryo or early meristem stage)?',
+        options: [
+          'So that as the organism grows and divides by mitosis, every new cell in the developing organism will contain the transferred gene and express the desired characteristic',
+          'Because adult cells do not contain any DNA or ribosomes',
+          'Because enzymes only work in newborn organisms',
+          'Because vectors cannot enter cells that have a cell membrane'
+        ],
+        correct: 0,
+        explanation: 'Early embryonic/developmental transfer ensures the transgene is replicated into all subsequent differentiated tissues.'
+      },
+      {
+        id: 85,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'What is a "VECTOR" in genetic engineering, and what are the two main examples used?',
+        options: [
+          'A carrier used to transfer a cut-out gene into a target cell—specifically a bacterial plasmid (small circular loop of DNA) or a virus',
+          'A mosquito that spreads malaria between humans',
+          'An enzyme that digests proteins in the stomach',
+          'A hormone that controls blood glucose'
+        ],
+        correct: 0,
+        explanation: 'In genetic engineering, vectors (bacterial plasmids or modified viruses) deliver recombinant DNA into host cells.'
+      },
+      {
+        id: 86,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In Separate Biology (8461), what is TISSUE CULTURE in plants, and why is it commercially and conservationally important?',
+        options: [
+          'Using small groups of cells from part of a plant to grow identical new plants on nutrient agar containing plant hormones; it is important for preserving rare plant species and growing large numbers of identical plants commercially in nurseries',
+          'Planting seeds in a greenhouse in spring',
+          'Fusing two different plant species together to make a hybrid',
+          'Exposing plant roots to antibiotics'
+        ],
+        correct: 0,
+        explanation: 'Micropropagation (tissue culture) clones thousands of genetically identical, disease-free plants rapidly from small explants.'
+      },
+      {
+        id: 87,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'What is a simpler, older method than tissue culture that gardeners often use to produce many identical new plants from a parent plant (Separate Biology 8461)?',
+        options: [
+          'Taking cuttings (cutting a section of stem/leaf, often dipping in rooting powder containing plant hormones, and planting in moist compost)',
+          'Cross-pollinating two different varieties with a paintbrush',
+          'Adult cell cloning with an electric shock',
+          'Inserting bacterial plasmids into flower petals'
+        ],
+        correct: 0,
+        explanation: 'Stem cuttings are a traditional, low-cost method of vegetative cloning used by gardeners.'
+      },
+      {
+        id: 88,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How do EMBRYO TRANSPLANTS work to clone high-value livestock such as prize cattle (Separate Biology 8461)?',
+        options: [
+          'Cells are split apart from a developing animal embryo before they become specialised, grown into several identical embryos in the lab, and then transplanted into separate host (surrogate) mothers',
+          'A nucleus is removed from an adult skin cell and placed into an unfertilised egg cell',
+          'Two adult bulls are bred together',
+          'Embryos are grown inside bacterial fermenters'
+        ],
+        correct: 0,
+        explanation: 'Embryo splitting divides totipotent cells of an early sexually produced embryo before implantation into surrogate mothers, yielding genetically identical offspring.'
+      },
+      {
+        id: 89,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'Put the steps of ADULT CELL CLONING (such as Dolly the sheep) in the correct chronological order (Separate Biology 8461):',
+        options: [
+          '1. Remove nucleus from an unfertilised egg cell; 2. Insert the nucleus from an adult body cell into the empty egg cell; 3. Give an electric shock to stimulate the egg cell to divide to form an embryo; 4. Insert the developing embryo into the womb of an adult female surrogate to continue its development',
+          '1. Give an electric shock to a sperm cell; 2. Fuse with a bacterial plasmid; 3. Grow on nutrient agar; 4. Plant in soil',
+          '1. Fertilise an egg with sperm; 2. Remove both nuclei; 3. Freeze the embryo',
+          '1. Insert adult skin cell directly into surrogate womb without using an egg cell'
+        ],
+        correct: 0,
+        explanation: 'Somatic cell nuclear transfer (SCNT): enucleated oocyte + adult body cell nucleus → electric shock to trigger mitosis → embryo implantation into surrogate uterus.'
+      },
+      {
+        id: 90,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'In adult cell cloning, Sheep A donates an adult udder cell nucleus, Sheep B donates an unfertilised egg cell (which has its nucleus removed), and Sheep C acts as the surrogate mother carrying the pregnancy. Which sheep will the resulting lamb be genetically identical to?',
+        options: [
+          'Sheep A (because all nuclear genetic information came from Sheep A’s body cell nucleus)',
+          'Sheep B (because Sheep B provided the empty egg cell)',
+          'Sheep C (because the lamb grew inside Sheep C’s womb)',
+          'An equal 50:50 mix of Sheep A and Sheep B'
+        ],
+        correct: 0,
+        explanation: 'Nuclear DNA determines the organism’s inherited characteristics, so the clone is genetically identical to the nuclear donor (Sheep A).'
+      },
+      {
+        id: 91,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'How does EMBRYO TRANSPLANT cloning differ from ADULT CELL CLONING in terms of knowing the traits of the clone in advance?',
+        options: [
+          'In adult cell cloning, you already know the exact characteristics of the adult animal being cloned; in embryo transplants, the embryo is created by sexual fertilisation so its exact adult characteristics are not known until it grows up',
+          'Embryo transplants produce clones of adult animals, whereas adult cell cloning uses sperm and eggs',
+          'Adult cell cloning requires two parents, whereas embryo transplants use zero parents',
+          'There is no difference between the two techniques'
+        ],
+        correct: 0,
+        explanation: 'Adult cell cloning replicates an existing proven adult genotype, whereas embryo splitting clones an untested sexually produced zygote.'
+      },
+      {
+        id: 92,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'How is modern medical research exploring genetic engineering to overcome inherited disorders in humans?',
+        options: [
+          'Gene therapy / genetic modification research aims to insert a functional copy of a faulty gene into affected human cells (or early embryos) so the cells can produce the missing functional protein',
+          'Giving patients high doses of antibiotics to rewrite their chromosomes',
+          'Replacing human white blood cells with plant chloroplasts',
+          'Using cloning to turn humans into bacteria'
+        ],
+        correct: 0,
+        explanation: 'Gene therapy seeks to introduce functional alleles to compensate for defective genes causing inherited diseases.'
+      },
+      {
+        id: 93,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Why is human insulin produced by genetically engineered bacteria better for diabetic patients than insulin previously extracted from pig or cow pancreases?',
+        options: [
+          'It is chemically identical to human insulin (so it does not trigger allergic/immune reactions), can be produced in huge quantities cheaply, and is acceptable to patients with religious or dietary objections to pig/beef products',
+          'Bacterial insulin cures Type 1 diabetes permanently after a single tablet',
+          'Pig insulin causes patients to grow curly tails',
+          'Bacterial insulin works without needing to enter the bloodstream'
+        ],
+        correct: 0,
+        explanation: 'Recombinant human insulin avoids species antigen differences, scales industrially, and overcomes ethical/religious barriers.'
+      },
+      {
+        id: 94,
+        topic: 'Genetic Engineering & Cloning',
+        tier: 'separate',
+        isGenetics: false,
+        question: 'What are the main ETHICAL objections to cloning animals (and potential human cloning)?',
+        options: [
+          'Low success rates with many embryos dying or being born with severe developmental abnormalities, reduced genetic diversity in cloned herds, and moral/religious objections to creating artificial human life ("playing God")',
+          'Cloned animals are poisonous to eat',
+          'Cloned animals cannot reproduce sexually when they grow up',
+          'Cloning uses up all the world’s electricity'
+        ],
+        correct: 0,
+        explanation: 'Animal welfare concerns (high failure/abnormality rates), narrowed gene pools, and ethical objections to reproductive human cloning are major issues.'
+      },
+
+      // -------------------- SUBTOPIC 6: FOSSILS, EXTINCTION & CLASSIFICATION (14) --------------------
+      {
+        id: 95,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What are FOSSILS, and what are the THREE main ways they are formed?',
+        options: [
+          'The "remains" of organisms from millions of years ago found in rocks; formed: 1. From parts of organisms that have not decayed because one or more conditions needed for decay (oxygen, warmth, moisture, microbes) are absent; 2. When hard parts of the organism (bones, shells, teeth) are replaced by minerals as they decay; 3. As preserved traces of organisms, such as footprints, burrows, and rootlet traces',
+          'Living bacteria trapped inside modern ice cubes; formed only by volcanic eruptions',
+          'Modern animal bones buried in garden soil for 6 months',
+          'Crystals formed when seawater evaporates in sunlight'
+        ],
+        correct: 0,
+        explanation: 'AQA specifies three modes of fossilisation: preservation due to absence of decay conditions, mineralisation (permineralisation) of hard parts, and trace fossils (footprints/burrows).'
+      },
+      {
+        id: 96,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Why can scientists NOT be completely certain about how life first began on Earth over 3 billion years ago?',
+        options: [
+          'Many early forms of life were soft-bodied, which meant they left very few traces behind, and what traces there were have been mainly destroyed by geological activity (such as volcanic eruptions, earthquakes, and erosion)',
+          'Rocks did not exist on Earth 3 billion years ago',
+          'Scientists are forbidden from studying fossils older than 1 million years',
+          'Early organisms were made of solid metal that dissolved in rain'
+        ],
+        correct: 0,
+        explanation: 'Soft-bodied early organisms rarely fossilised, and tectonic/metamorphic geological processes destroyed most ancient fossil-bearing strata.'
+      },
+      {
+        id: 97,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What does EXTINCTION mean, and what are FIVE factors that can cause a species to become extinct?',
+        options: [
+          'When no individuals of a species remain alive anywhere on Earth; caused by: changes to the environment over geological time, new predators, new diseases, new more successful competitors, or a single catastrophic event (such as a massive volcanic eruption or asteroid collision)',
+          'When animals hibernate during winter; caused by cold weather only',
+          'When a species migrates to a different forest; caused by high rainfall',
+          'When plants drop their leaves in autumn; caused by shorter daylight hours'
+        ],
+        correct: 0,
+        explanation: 'AQA lists five extinction drivers: environmental change, new predators, new diseases, outcompetition by new competitors, and catastrophic events.'
+      },
+      {
+        id: 98,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Why can BACTERIA evolve rapidly (for example developing antibiotic resistance like MRSA), giving scientists observable evidence of evolution in real time?',
+        options: [
+          'Because bacteria reproduce at a very fast rate (often dividing every 20–30 minutes), so mutations arise frequently and advantageous resistance alleles spread rapidly through populations',
+          'Because bacteria have 100 nuclei in each cell',
+          'Because bacteria never undergo mutations',
+          'Because antibiotics turn bacteria into viruses'
+        ],
+        correct: 0,
+        explanation: 'Rapid binary fission generates huge population numbers and short generation times, accelerating natural selection.'
+      },
+      {
+        id: 99,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'In the traditional Linnaean classification system (devised by Carl Linnaeus), what is the correct order of groups from LARGEST (broadest) to SMALLEST (most specific)?',
+        options: [
+          'Kingdom → Phylum → Class → Order → Family → Genus → Species',
+          'Species → Genus → Family → Order → Class → Phylum → Kingdom',
+          'Kingdom → Class → Phylum → Family → Order → Species → Genus',
+          'Domain → Species → Genus → Kingdom → Order → Class → Family'
+        ],
+        correct: 0,
+        explanation: 'KPCOFGS: Kingdom, Phylum, Class, Order, Family, Genus, Species.'
+      },
+      {
+        id: 100,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Under the BINOMIAL NAMING SYSTEM, humans are named Homo sapiens. What do the two parts of a binomial name represent?',
+        options: [
+          'The first word (Homo) is the GENUS (written with a capital letter), and the second word (sapiens) is the SPECIES (written with a lower-case letter)',
+          'The first word is the Kingdom, and the second word is the Phylum',
+          'The first word is the country where the animal lives, and the second word is its diet',
+          'The first word is the father’s name, and the second word is the mother’s name'
+        ],
+        correct: 0,
+        explanation: 'Binomial nomenclature uniquely identifies every species using its Genus and species names.'
+      },
+      {
+        id: 101,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Two animals have the binomial names Panthera leo (lion) and Panthera tigris (tiger). What does this tell you about their evolutionary relationship?',
+        options: [
+          'They belong to the same GENUS (Panthera) and are closely related evolutionary cousins, though they are different species',
+          'They belong to the exact same species and can produce fertile offspring',
+          'They belong to different Kingdoms',
+          'They are not related at all'
+        ],
+        correct: 0,
+        explanation: 'Sharing the same genus name (Panthera) indicates recent common ancestry, while different species names reflect reproductive isolation.'
+      },
+      {
+        id: 102,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'As microscopes improved and biochemical processes (such as DNA and RNA base sequencing) became better understood, Carl Woese proposed the THREE-DOMAIN SYSTEM above Kingdoms. What are the three domains?',
+        options: [
+          'Archaea (primitive bacteria usually living in extreme environments), Bacteria (true bacteria), and Eukaryota (which includes protists, fungi, plants, and animals)',
+          'Animals, Plants, and Fungi',
+          'Viruses, Bacteria, and Protists',
+          'Prokaryotes, Mammals, and Insects'
+        ],
+        correct: 0,
+        explanation: 'Woese’s molecular rRNA analysis split prokaryotes into Archaea and Bacteria, placing all eukaryotic kingdoms in Eukaryota.'
+      },
+      {
+        id: 103,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'What are ARCHAEA in Carl Woese’s three-domain classification system?',
+        options: [
+          'Primitive prokaryotic microorganisms that appear biochemically distinct from true bacteria and are often extremophiles living in extreme environments (such as hot hydrothermal vents or highly salty lakes)',
+          'Multicellular eukaryotic plants found only in rainforests',
+          'Viruses that infect human red blood cells',
+          'Fossilised dinosaurs from the Jurassic period'
+        ],
+        correct: 0,
+        explanation: 'Archaea are single-celled prokaryotes without a nucleus whose biochemical/RNA sequences differ fundamentally from true Bacteria.'
+      },
+      {
+        id: 104,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'What do EVOLUTIONARY TREES (phylogenetic trees) show, and what types of data do scientists use to construct them?',
+        options: [
+          'They show how scientists believe different organisms are related through common ancestors; constructed using current classification data (such as DNA/protein sequence comparisons) for living organisms and fossil data for extinct organisms',
+          'They show the exact height of trees in a forest using ruler measurements',
+          'They show only the food chains inside a pond',
+          'They show the weather forecast for the next 100 years'
+        ],
+        correct: 0,
+        explanation: 'Branching points (nodes) on evolutionary trees represent common ancestors inferred from molecular sequencing and fossil morphology.'
+      },
+      {
+        id: 105,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'On an evolutionary tree, Species X and Species Y share a branching point (node) very close to the present day, whereas Species X and Species Z share a branching point much further back in time. What can you conclude?',
+        options: [
+          'Species X and Species Y share a more recent common ancestor and are more closely related (having more similar DNA sequences) than Species X and Species Z',
+          'Species X and Species Z are the exact same species',
+          'Species Y is extinct, while Species Z is still alive',
+          'Species X evolved from Species Y last week'
+        ],
+        correct: 0,
+        explanation: 'More recent divergence nodes indicate closer evolutionary relatedness and higher DNA sequence homology.'
+      },
+      {
+        id: 106,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'A wooly mammoth is discovered frozen intact inside Siberian permafrost ice from 20,000 years ago. Why did its soft tissues (skin, hair, and muscles) not decay?',
+        options: [
+          'The freezing temperatures meant that decay microorganisms (bacteria and fungi) could not grow or reproduce and their digestive enzymes were inactive (one of the conditions needed for decay—warmth—was absent)',
+          'Mammoth skin was made of solid stone',
+          'There were no bacteria anywhere on Earth 20,000 years ago',
+          'Ice contains high concentrations of penicillin'
+        ],
+        correct: 0,
+        explanation: 'Decay requires warmth, moisture, oxygen, and decomposer microbes; sub-zero permafrost inhibits microbial enzyme activity.'
+      },
+      {
+        id: 107,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'higher',
+        isGenetics: false,
+        question: 'Why did DNA sequencing sometimes force scientists to reclassify organisms that Linnaeus had originally placed in the same group based on outward appearance?',
+        options: [
+          'Convergent evolution can make unrelated species look superficially similar due to adapting to similar environments, whereas DNA base sequencing directly reveals true genetic ancestry and evolutionary relatedness',
+          'Linnaeus did not know how to count animal legs',
+          'Organisms change their Kingdom every winter',
+          'DNA sequencing only works on fossilised bones'
+        ],
+        correct: 0,
+        explanation: 'Molecular phylogenetics compares nucleotide/amino acid sequences directly, avoiding misleading analogous traits caused by convergent evolution.'
+      },
+      {
+        id: 108,
+        topic: 'Fossils, Extinction & Classification',
+        tier: 'foundation',
+        isGenetics: false,
+        question: 'Which domain in Carl Woese’s system includes ALL four traditional kingdoms of Animals, Plants, Fungi, and Protists?',
+        options: ['Eukaryota', 'Bacteria', 'Archaea', 'Prokaryota'],
+        correct: 0,
+        explanation: 'All organisms whose cells possess a membrane-bound nucleus belong to the domain Eukaryota.'
+      }
+    ];
+
+    // =========================================================================
+    // 2. STATE MANAGEMENT
+    // =========================================================================
+    let state = {
+      studentName: '',
+      studentEmail: '',
+      selectedTier: 'higher', // 'foundation' | 'higher' | 'separate'
+      selectedMode: 'all',    // 'all' | 'genetics'
+      selectedCount: 20,
+      activeQuestions: [],
+      currentIndex: 0,
+      score: 0,
+      answeredCurrent: false,
+      userResponses: [],      // { questionObj, chosenIndex, isCorrect }
+      isMissedRetry: false
+    };
+
+    // =========================================================================
+    // 3. FILTERING & POOL HELPERS
+    // =========================================================================
+    function getFilteredPool(tier, mode) {
+      return QUESTION_BANK.filter(item => {
+        let tierMatch = false;
+        if (tier === 'foundation') {
+          tierMatch = item.tier === 'foundation';
+        } else if (tier === 'higher') {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher';
+        } else {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher' || item.tier === 'separate';
+        }
+
+        if (!tierMatch) return false;
+        if (mode === 'genetics') return item.isGenetics === true;
+        return true;
+      });
+    }
+
+    function shuffleArray(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function prepareQuestionWithShuffledOptions(item) {
+      const indexed = item.options.map((text, idx) => ({
+        text,
+        isCorrect: idx === item.correct
+      }));
+      const shuffled = shuffleArray(indexed);
+      return {
+        ...item,
+        shuffledOptions: shuffled,
+        shuffledAnswerIndex: shuffled.findIndex(o => o.isCorrect)
+      };
+    }
+
+    // =========================================================================
+    // 4. START SCREEN UI INTERACTIONS
+    // =========================================================================
+    function selectTier(tier) {
+      state.selectedTier = tier;
+
+      document.querySelectorAll('.tier-btn').forEach(btn => {
+        const isSelected = btn.dataset.tier === tier;
+        const check = btn.querySelector('.tier-check');
+        if (isSelected) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50');
+          btn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.remove('border-slate-300');
+          check.classList.add('border-teal-600', 'bg-teal-600');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50');
+          btn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.add('border-slate-300');
+          check.classList.remove('border-teal-600', 'bg-teal-600');
+        }
+      });
+
+      const geneticsDesc = document.getElementById('modeGeneticsDesc');
+      if (tier === 'foundation') {
+        geneticsDesc.textContent = 'Dedicated focus mode: core alleles, homozygous/heterozygous Punnett squares, XX/XY sex determination, polydactyly, cystic fibrosis & embryo screening.';
+      } else if (tier === 'separate') {
+        geneticsDesc.textContent = 'Dedicated focus mode: Punnett square ratios, family pedigree trees, inherited disorders, embryo screening & Gregor Mendel’s pea experiments.';
+      } else {
+        geneticsDesc.textContent = 'Dedicated focus mode: alleles, homozygous/heterozygous crosses, Punnett square probabilities, sex determination, polydactyly, cystic fibrosis & embryo screening.';
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectMode(mode) {
+      state.selectedMode = mode;
+
+      const allBtn = document.getElementById('modeAllBtn');
+      const allIcon = document.getElementById('modeAllIcon');
+      const allCheck = document.getElementById('modeAllCheck');
+
+      const genBtn = document.getElementById('modeGeneticsBtn');
+      const genIcon = document.getElementById('modeGeneticsIcon');
+      const genCheck = document.getElementById('modeGeneticsCheck');
+
+      if (mode === 'all') {
+        allBtn.classList.remove('border-slate-200', 'bg-slate-50');
+        allBtn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allIcon.classList.remove('bg-slate-200', 'text-slate-700');
+        allIcon.classList.add('bg-teal-600', 'text-white');
+        allCheck.classList.remove('hidden');
+
+        genBtn.classList.remove('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        genBtn.classList.add('border-slate-200', 'bg-amber-50/40');
+        genIcon.classList.remove('bg-amber-500', 'text-white');
+        genIcon.classList.add('bg-amber-100', 'text-amber-800');
+        genCheck.classList.add('hidden');
+      } else {
+        genBtn.classList.remove('border-slate-200', 'bg-amber-50/40');
+        genBtn.classList.add('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        genIcon.classList.remove('bg-amber-100', 'text-amber-800');
+        genIcon.classList.add('bg-amber-500', 'text-white');
+        genCheck.classList.remove('hidden');
+
+        allBtn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allBtn.classList.add('border-slate-200', 'bg-slate-50');
+        allIcon.classList.remove('bg-teal-600', 'text-white');
+        allIcon.classList.add('bg-slate-200', 'text-slate-700');
+        allCheck.classList.add('hidden');
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectCount(count) {
+      state.selectedCount = count;
+      document.querySelectorAll('.count-btn').forEach(btn => {
+        const btnCount = parseInt(btn.dataset.count, 10);
+        if (btnCount === count) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.add('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.remove('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        }
+      });
+      updateSetupLabels();
+    }
+
+    function updateSetupLabels() {
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadges = {
+        foundation: 'Foundation Tier Selected',
+        higher: 'Higher Tier Selected',
+        separate: 'Separate Biology (8461) Selected'
+      };
+
+      document.getElementById('tierCountHint').textContent = tierBadges[state.selectedTier];
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const poolText = document.getElementById('poolAvailabilityText');
+      const cappedBadge = document.getElementById('cappedPoolBadge');
+
+      if (state.selectedMode === 'genetics') {
+        poolText.textContent = `${pool.length} unique Genetics & Punnett Square questions available`;
+      } else {
+        poolText.textContent = `${pool.length} unique questions available for ${tierNames[state.selectedTier]}`;
+      }
+
+      const actualCount = Math.min(state.selectedCount, pool.length);
+      if (state.selectedCount > pool.length) {
+        cappedBadge.classList.remove('hidden');
+        cappedBadge.textContent = `Using all ${actualCount} available`;
+      } else {
+        cappedBadge.classList.add('hidden');
+      }
+
+      const startLabel = document.getElementById('startBtnLabel');
+      if (state.selectedMode === 'genetics') {
+        startLabel.textContent = `Start Genetics & Inheritance Quiz (${actualCount} Questions)`;
+      } else {
+        startLabel.textContent = `Start ${tierNames[state.selectedTier]} Quiz (${actualCount} Questions)`;
+      }
+    }
+
+    function clearValidationError() {
+      const input = document.getElementById('studentNameInput');
+      const alertBox = document.getElementById('validationAlert');
+      input.classList.remove('border-rose-500', 'bg-rose-50/40');
+      alertBox.classList.add('hidden');
+    }
+
+    function handleStartQuiz(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('studentNameInput');
+      const emailInput = document.getElementById('studentEmailInput');
+      const nameVal = nameInput.value.trim();
+
+      if (!nameVal) {
+        nameInput.classList.add('border-rose-500', 'bg-rose-50/40');
+        document.getElementById('validationAlert').classList.remove('hidden');
+        nameInput.focus();
+        return;
+      }
+
+      state.studentName = nameVal;
+      state.studentEmail = emailInput.value.trim();
+      state.isMissedRetry = false;
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const shuffledPool = shuffleArray(pool);
+      const chosenSlice = shuffledPool.slice(0, Math.min(state.selectedCount, shuffledPool.length));
+
+      launchQuizSession(chosenSlice);
+    }
+
+    // =========================================================================
+    // 5. QUIZ ENGINE
+    // =========================================================================
+    function launchQuizSession(rawQuestions) {
+      state.activeQuestions = rawQuestions.map(prepareQuestionWithShuffledOptions);
+      state.currentIndex = 0;
+      state.score = 0;
+      state.answeredCurrent = false;
+      state.userResponses = [];
+
+      document.getElementById('headerStudentName').textContent = state.studentName;
+      document.getElementById('headerControls').classList.remove('hidden');
+
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const item = state.activeQuestions[state.currentIndex];
+      const total = state.activeQuestions.length;
+      const qNum = state.currentIndex + 1;
+      state.answeredCurrent = false;
+
+      const tierLabels = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadge = document.getElementById('quizTierBadge');
+      tierBadge.textContent = state.isMissedRetry ? 'Missed Questions Drill' : tierLabels[state.selectedTier];
+
+      document.getElementById('quizTopicBadge').textContent = item.topic;
+
+      const focusBadge = document.getElementById('quizFocusBadge');
+      if (item.isGenetics) {
+        focusBadge.classList.remove('hidden');
+      } else {
+        focusBadge.classList.add('hidden');
+      }
+
+      document.getElementById('questionCounterText').textContent = `Question ${qNum} of ${total}`;
+      document.getElementById('liveScoreText').textContent = state.score;
+      const pct = Math.round(((qNum - 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${Math.max(4, pct)}%`;
+
+      document.getElementById('questionPrompt').textContent = item.question;
+      document.getElementById('feedbackBox').classList.add('hidden');
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      item.shuffledOptions.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'option-card w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-teal-50/50 hover:border-teal-500 flex items-start gap-3.5 focus:outline-none';
+        btn.innerHTML = `
+          <span class="option-letter w-7 h-7 rounded-lg bg-white border border-slate-300 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">
+            ${letters[idx]}
+          </span>
+          <span class="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+            ${opt.text}
+          </span>
+        `;
+        btn.onclick = () => handleAnswerSelection(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleAnswerSelection(chosenIdx) {
+      if (state.answeredCurrent) return;
+      state.answeredCurrent = true;
+
+      const item = state.activeQuestions[state.currentIndex];
+      const isCorrect = chosenIdx === item.shuffledAnswerIndex;
+
+      if (isCorrect) {
+        state.score++;
+        document.getElementById('liveScoreText').textContent = state.score;
+      }
+
+      state.userResponses.push({
+        questionObj: item,
+        chosenIndex: chosenIdx,
+        isCorrect: isCorrect
+      });
+
+      const optionBtns = document.querySelectorAll('#optionsContainer .option-card');
+      optionBtns.forEach((btn, idx) => {
+        btn.disabled = true;
+        const letterBadge = btn.querySelector('.option-letter');
+        btn.classList.remove('hover:bg-teal-50/50', 'hover:border-teal-500', 'bg-slate-50', 'border-slate-200');
+
+        if (idx === item.shuffledAnswerIndex) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-emerald-600', 'border-emerald-600', 'text-white');
+        } else if (idx === chosenIdx && !isCorrect) {
+          btn.classList.add('bg-rose-50', 'border-rose-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-rose-600', 'border-rose-600', 'text-white');
+        } else {
+          btn.classList.add('bg-slate-50', 'border-slate-200', 'opacity-60');
+        }
+      });
+
+      const feedbackBox = document.getElementById('feedbackBox');
+      const feedbackIcon = document.getElementById('feedbackIcon');
+      const feedbackHeading = document.getElementById('feedbackHeading');
+      const feedbackExplanation = document.getElementById('feedbackExplanation');
+
+      feedbackBox.classList.remove('hidden', 'bg-emerald-50/70', 'border-emerald-300', 'bg-rose-50/70', 'border-rose-300');
+      feedbackIcon.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+
+      if (isCorrect) {
+        feedbackBox.classList.add('bg-emerald-50/70', 'border-emerald-300');
+        feedbackIcon.classList.add('bg-emerald-600', 'text-white');
+        feedbackIcon.textContent = '✓';
+        feedbackHeading.textContent = 'Correct! Mark Awarded';
+        feedbackHeading.className = 'font-extrabold text-base text-emerald-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-emerald-900/90';
+      } else {
+        feedbackBox.classList.add('bg-rose-50/70', 'border-rose-300');
+        feedbackIcon.classList.add('bg-rose-600', 'text-white');
+        feedbackIcon.textContent = '✕';
+        feedbackHeading.textContent = 'Incorrect — Review AQA Examiner Note';
+        feedbackHeading.className = 'font-extrabold text-base text-rose-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-rose-900/90';
+      }
+
+      feedbackExplanation.textContent = item.explanation;
+
+      const isLast = state.currentIndex === state.activeQuestions.length - 1;
+      document.getElementById('nextBtnText').textContent = isLast ? 'View Diagnostic Report' : 'Next Question';
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round(((state.currentIndex + 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${pct}%`;
+    }
+
+    function handleNextQuestion() {
+      if (state.currentIndex < state.activeQuestions.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showDiagnosticReport();
+      }
+    }
+
+    // =========================================================================
+    // 6. DIAGNOSTIC REPORT & EXPORT
+    // =========================================================================
+    function estimateGcseGrade(pct, tier) {
+      if (tier === 'foundation') {
+        if (pct >= 80) return 'Grade 5';
+        if (pct >= 65) return 'Grade 4';
+        if (pct >= 50) return 'Grade 3';
+        if (pct >= 35) return 'Grade 2';
+        return 'Grade 1';
+      } else {
+        if (pct >= 85) return 'Grade 9';
+        if (pct >= 75) return 'Grade 8';
+        if (pct >= 65) return 'Grade 7';
+        if (pct >= 55) return 'Grade 6';
+        if (pct >= 45) return 'Grade 5';
+        if (pct >= 35) return 'Grade 4';
+        return 'Grade 3';
+      }
+    }
+
+    function showDiagnosticReport() {
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.isMissedRetry
+        ? 'Targeted Missed Questions Retry'
+        : (state.selectedMode === 'genetics' ? 'Genetics, Punnett Squares & Inheritance Only' : 'All Inheritance & Evolution Topics');
+
+      document.getElementById('reportStudentTitle').textContent = `Diagnostic Report: ${state.studentName}`;
+      document.getElementById('reportMetaSubtitle').textContent = `${tierNames[state.selectedTier]} • ${modeName}`;
+      document.getElementById('reportPercentage').textContent = `${pct}%`;
+      document.getElementById('reportFraction').textContent = `${state.score} / ${total} Correct`;
+      document.getElementById('reportGradeBadge').textContent = estimateGcseGrade(pct, state.selectedTier);
+
+      const missedItems = state.userResponses.filter(r => !r.isCorrect);
+      const retryBtn = document.getElementById('retryMissedBtn');
+      if (missedItems.length > 0) {
+        retryBtn.classList.remove('hidden');
+        document.getElementById('missedCountLabel').textContent = missedItems.length;
+      } else {
+        retryBtn.classList.add('hidden');
+      }
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) {
+          topicMap[t] = { correct: 0, total: 0 };
+        }
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownContainer = document.getElementById('topicBreakdownContainer');
+      breakdownContainer.innerHTML = '';
+
+      Object.entries(topicMap).forEach(([topicName, stats]) => {
+        const topicPct = Math.round((stats.correct / stats.total) * 100);
+        let barColor = 'bg-emerald-500';
+        let badgeStyle = 'bg-emerald-100 text-emerald-800';
+        let statusLabel = 'Strong';
+
+        if (topicPct < 50) {
+          barColor = 'bg-rose-500';
+          badgeStyle = 'bg-rose-100 text-rose-800';
+          statusLabel = 'Revise Priority';
+        } else if (topicPct < 70) {
+          barColor = 'bg-amber-500';
+          badgeStyle = 'bg-amber-100 text-amber-800';
+          statusLabel = 'Needs Revision';
+        }
+
+        const row = document.createElement('div');
+        row.className = 'p-4 rounded-xl bg-slate-50 border border-slate-200';
+        row.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="font-bold text-sm text-slate-900">${topicName}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${badgeStyle}">${statusLabel}</span>
+              <span class="text-xs font-extrabold text-slate-700">${stats.correct}/${stats.total} (${topicPct}%)</span>
+            </div>
+          </div>
+          <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${topicPct}%;"></div>
+          </div>
+        `;
+        breakdownContainer.appendChild(row);
+      });
+
+      const reviewList = document.getElementById('questionReviewList');
+      reviewList.innerHTML = '';
+
+      state.userResponses.forEach((res, idx) => {
+        const item = res.questionObj;
+        const chosenText = item.shuffledOptions[res.chosenIndex].text;
+        const correctText = item.shuffledOptions[item.shuffledAnswerIndex].text;
+
+        const card = document.createElement('div');
+        card.className = `p-4 sm:p-5 rounded-xl border-2 ${res.isCorrect ? 'border-emerald-200 bg-emerald-50/30' : 'border-rose-200 bg-rose-50/30'}`;
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider ${res.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              Question ${idx + 1} &bull; ${res.isCorrect ? 'Correct' : 'Incorrect'}
+            </span>
+            <span class="text-xs font-semibold text-slate-500">${item.topic}</span>
+          </div>
+          <p class="font-bold text-sm sm:text-base text-slate-900 mb-3">${item.question}</p>
+          <div class="space-y-1.5 text-xs sm:text-sm">
+            <p class="${res.isCorrect ? 'text-emerald-800 font-semibold' : 'text-rose-800 font-semibold'}">
+              Your answer: ${chosenText}
+            </p>
+            ${!res.isCorrect ? `<p class="text-emerald-800 font-bold">Correct answer: ${correctText}</p>` : ''}
+            <p class="text-slate-600 pt-1.5 border-t border-slate-200/80 mt-2">
+              <strong class="text-slate-800">Mark Scheme Note:</strong> ${item.explanation}
+            </p>
+          </div>
+        `;
+        reviewList.appendChild(card);
+      });
+
+      const summaryText = buildPlainTextReport();
+      const subject = encodeURIComponent(`AQA GCSE Inheritance, Variation & Evolution Quiz Results — ${state.studentName} (${pct}%)`);
+      const body = encodeURIComponent(summaryText);
+      const recipient = state.studentEmail ? encodeURIComponent(state.studentEmail) : '';
+      document.getElementById('emailResultsLink').href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    function buildPlainTextReport() {
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+      const estGrade = estimateGcseGrade(pct, state.selectedTier);
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.selectedMode === 'genetics'
+        ? 'Genetics, Punnett Squares & Inheritance Only'
+        : 'All Inheritance & Evolution Topics';
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) topicMap[t] = { correct: 0, total: 0 };
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownLines = Object.entries(topicMap)
+        .map(([t, s]) => `- ${t}: ${s.correct}/${s.total} (${Math.round((s.correct / s.total) * 100)}%)`)
+        .join('\n');
+
+      return [
+        `Mr Leek Science — AQA GCSE Inheritance, Variation & Evolution Revision Quiz`,
+        `Student: ${state.studentName}`,
+        `Pathway: ${tierNames[state.selectedTier]} | Focus: ${modeName}`,
+        `Overall Score: ${state.score} / ${total} (${pct}% — ${estGrade})`,
+        ``,
+        `Topic Breakdown:`,
+        breakdownLines
+      ].join('\n');
+    }
+
+    function copyResultsSummary() {
+      const text = buildPlainTextReport();
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        const label = document.getElementById('copyBtnLabel');
+        label.textContent = 'Copied to Clipboard ✓';
+        setTimeout(() => {
+          label.textContent = 'Copy Results Summary';
+        }, 2500);
+      } catch (err) {
+        // Fallback if blocked
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    function startMissedQuestionsQuiz() {
+      const missedRaw = state.userResponses
+        .filter(r => !r.isCorrect)
+        .map(r => r.questionObj);
+
+      if (missedRaw.length === 0) return;
+      state.isMissedRetry = true;
+      launchQuizSession(shuffleArray(missedRaw));
+    }
+
+    // =========================================================================
+    // 7. NAVIGATION & MODAL HELPERS
+    // =========================================================================
+    function confirmReturnHome() {
+      const quizVisible = !document.getElementById('quizScreen').classList.contains('hidden');
+      if (quizVisible && state.userResponses.length > 0) {
+        document.getElementById('confirmModal').classList.remove('hidden');
+      } else {
+        returnToMenu();
+      }
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function returnToMenu() {
+      closeConfirmModal();
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('headerControls').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectTier('higher');
+      selectMode('all');
+      selectCount(20);
+    });
+  </script>
+</body>
+</html>
